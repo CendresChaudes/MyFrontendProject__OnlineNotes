@@ -21,6 +21,7 @@ export function Header() {
               path={isMobileBreakpoint ? shortLogoUrl : fullLogoUrl}
               width={isMobileBreakpoint ? 40 : 230}
               height={isMobileBreakpoint ? 40 : 60}
+              alt='Логотип сервиса "Online notes".'
             />
           </Link>
         </Col>

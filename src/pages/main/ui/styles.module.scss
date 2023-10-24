@@ -1,0 +1,32 @@
+.layout {
+  background-color: $color-default-white;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  padding: 15px 15px;
+
+  @include bp-576 {
+    padding: 15px 20px;
+  }
+
+  @include bp-768 {
+    padding: 15px 30px;
+  }
+
+  @include bp-992 {
+    padding: 15px 40px;
+  }
+
+  @include bp-1200 {
+    padding: 15px 50px;
+  }
+
+  @include bp-1600 {
+    padding: 15px 80px;
+  }
+}
