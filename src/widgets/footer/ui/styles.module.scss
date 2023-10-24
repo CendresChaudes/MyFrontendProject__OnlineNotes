@@ -1,8 +1,7 @@
 .footer {
   flex-shrink: 0;
   padding: 15px 15px !important;
-  background-color: $color-transparent;
-  border-top: 1px solid $color-gainsboro;
+  border-top: 1px solid $color-jade;
 
   @include bp-576 {
     padding: 15px 20px !important;

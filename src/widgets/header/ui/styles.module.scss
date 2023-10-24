@@ -1,11 +1,9 @@
 .header {
+  background-color: $color-jade;
   height: auto !important;
   padding: 10px 15px !important;
 
   line-height: normal;
-
-  background-color: $color-transparent;
-  border-bottom: 1px solid $color-gainsboro;
 
   @include bp-576 {
     padding: 5px 20px !important;
