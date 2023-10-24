@@ -1,8 +1,28 @@
 .footer {
   flex-shrink: 0;
-
+  padding: 15px 15px !important;
   background-color: #ffffff;
   border-top: 1px solid #dddddd;
+
+  @include bp-576 {
+    padding: 15px 20px !important;
+  }
+
+  @include bp-768 {
+    padding: 20px 30px !important;
+  }
+
+  @include bp-992 {
+    padding: 20px 40px !important;
+  }
+
+  @include bp-1200 {
+    padding: 25px 50px !important;
+  }
+
+  @include bp-1600 {
+    padding: 25px 80px !important;
+  }
 }
 
 .text {
