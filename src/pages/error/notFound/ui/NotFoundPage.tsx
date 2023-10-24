@@ -1,6 +1,6 @@
 import { Button, Result, Typography } from 'antd';
 import { Link } from 'react-router-dom';
-import { useBreakpoint } from '@/shared/lib';
+import { useBreakpoint, isMobile } from '@/shared/lib';
 import styles from './styles.module.css';
 import { AppRoute } from '@/const';
 
@@ -19,7 +19,7 @@ export function NotFoundPage() {
         <Button
           type="primary"
           shape="round"
-          size={(currentBreakpoint !== 'xs' && currentBreakpoint !== 'sm') ? 'large' : 'middle'}
+          size={isMobile(currentBreakpoint) ? 'large' : 'middle'}
         >
           <Link to={AppRoute.Root}>Back Home</Link>
         </Button>
