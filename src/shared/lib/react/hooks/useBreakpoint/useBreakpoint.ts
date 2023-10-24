@@ -1,8 +1,8 @@
 import { useBreakpoint as _useBreakpoint } from 'use-breakpoint';
-import { breakpoints } from '../const';
+import { Breakpoint } from './const';
 
 export const useBreakpoint = () => {
-  const { breakpoint } = _useBreakpoint(breakpoints);
+  const { breakpoint } = _useBreakpoint(Breakpoint);
 
   return breakpoint;
 };
