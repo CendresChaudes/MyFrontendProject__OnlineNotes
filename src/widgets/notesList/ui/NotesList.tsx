@@ -1,4 +1,5 @@
 import { Row, Col } from 'antd';
+import { DeleteNote, EditNote } from '@/features/noteMenu';
 import { Note } from '@/entities/note';
 import styles from './styles.module.scss';
 import { mockNotes as notes } from '@/mock/notes';
@@ -20,7 +21,10 @@ export function NotesList() {
           lg={{ span: 8 }}
           xl={{ span: 6 }}
         >
-          <Note {...note}/>
+          <Note
+            actionSlot={[<EditNote key="edit" />, <DeleteNote key="delete" />]}
+            {...note}
+          />
         </Col>
       ))}
     </Row>

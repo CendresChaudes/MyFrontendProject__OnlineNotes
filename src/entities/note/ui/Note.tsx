@@ -1,7 +1,8 @@
-import { EditFilled, DeleteFilled } from '@ant-design/icons';
+
 import { Card, Typography } from 'antd';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ru';
+import { ReactNode } from 'react';
 import { DATE_FORMAT } from '../const';
 import styles from './styles.module.scss';
 
@@ -13,9 +14,10 @@ interface INote {
   title: string;
   text: string;
   date: number;
+  actionSlot: ReactNode[];
 }
 
-export function Note({ id, title, text, date }: INote) {
+export function Note({ id, title, text, date, actionSlot }: INote) {
   return (
     <Card
       className={styles.card}
@@ -24,7 +26,7 @@ export function Note({ id, title, text, date }: INote) {
           {title}
         </Title>
       }
-      actions={[<EditFilled key="edit" />, <DeleteFilled key="delete" />]}
+      actions={actionSlot}
       hoverable
     >
       <Paragraph className={styles.text} ellipsis={{ rows: 6 }}>{text}</Paragraph>
