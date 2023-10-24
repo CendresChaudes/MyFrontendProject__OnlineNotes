@@ -1,0 +1,19 @@
+// Colors
+// ---------------------------------
+
+$color-transparent: rgba(255, 255, 255, 0);
+
+// Animation
+// ---------------------------------
+
+$tf-default:                        ease;
+$trans-default:                     0.3s $tf-default;
+
+// Breakpoints
+// ---------------------------------
+
+$bp-576: 576px;
+$bp-768: 768px;
+$bp-992: 992px;
+$bp-1200: 1200px;
+$bp-1600: 1600px;

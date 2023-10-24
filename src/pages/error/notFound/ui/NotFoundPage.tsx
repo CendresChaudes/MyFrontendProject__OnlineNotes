@@ -1,7 +1,7 @@
 import { Button, Result, Typography } from 'antd';
 import { Link } from 'react-router-dom';
 import { useBreakpoint, isMobile } from '@/shared/lib';
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 import { AppRoute } from '@/const';
 
 const { Title, Text } = Typography;

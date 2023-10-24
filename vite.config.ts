@@ -35,6 +35,13 @@ export default defineConfig(({ mode }) => {
     },
     build: {
       target: 'esnext'
+    },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@import "./src/app/styles/styles";'
+        }
+      }
     }
   };
 });

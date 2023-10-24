@@ -1,5 +1,5 @@
 import { Result, Typography } from 'antd';
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 
 const { Title, Text } = Typography;
 

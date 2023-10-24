@@ -1,0 +1,61 @@
+@mixin hover {
+  @media (hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+@mixin focus {
+  &:focus {
+    @content;
+  }
+}
+
+@mixin hover-focus {
+  @media (hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+
+  &:focus {
+    @content;
+  }
+}
+
+@mixin active {
+  &:active {
+    @content;
+  }
+}
+
+@mixin bp-576 {
+  @media (min-width: ($bp-576)) {
+    @content
+  }
+};
+
+@mixin bp-768 {
+  @media (min-width: ($bp-768)) {
+    @content
+  }
+};
+
+@mixin bp-992 {
+  @media (min-width: ($bp-992)) {
+    @content
+  }
+};
+
+@mixin bp-1200 {
+  @media (min-width: ($bp-1200)) {
+    @content
+  }
+};
+
+@mixin bp-1600 {
+  @media (min-width: ($bp-1600)) {
+    @content
+  }
+};

@@ -2,27 +2,23 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 10px;
+  gap: 15px;
   height: 100vh;
-}
 
-.result > div {
-  margin: 0 auto !important;
+  & > div {
+    margin: 0 auto !important;
+  }
 }
 
 .title {
   font-size: 24px !important;
   margin: 0 !important;
-}
 
-@media (min-width: 768px) {
-  .title {
+  @include bp-768 {
     font-size: 26px !important;
   }
-}
 
-@media (min-width: 1600px) {
-  .title {
+  @include bp-1600 {
     font-size: 28px !important;
   }
 }
@@ -30,16 +26,12 @@
 .text {
   color: rgba(0, 0, 0, 0.45) !important;
   font-size: 18px !important;
-}
 
-@media (min-width: 768px) {
-  .text {
+  @include bp-768 {
     font-size: 20px !important;
   }
-}
 
-@media (min-width: 1600px) {
-  .text {
+  @include bp-1600 {
     font-size: 22px !important;
   }
 }
