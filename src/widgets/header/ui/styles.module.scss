@@ -1,0 +1,45 @@
+.header {
+  height: auto !important;
+  padding: 5px 15px !important;
+
+  line-height: normal;
+
+  background-color: $color-transparent;
+  border-bottom: 1px solid $color-gainsboro;
+
+  @include bp-576 {
+    padding: 5px 20px !important;
+  }
+
+  @include bp-768 {
+    padding: 7px 30px !important;
+  }
+
+  @include bp-992 {
+    padding: 7px 40px !important;
+  }
+
+  @include bp-1200 {
+    padding: 10px 50px !important;
+  }
+
+  @include bp-1600 {
+    padding: 12px 80px !important;
+  }
+}
+
+.col {
+  text-align: center;
+}
+
+.link {
+  transition: opacity $trans-default;
+
+  @include hover-focus {
+    opacity: 0.7;
+  }
+
+  @include active {
+    opacity: 0.5;
+  }
+}
