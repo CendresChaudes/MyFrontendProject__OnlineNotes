@@ -1,0 +1,54 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  border: 2px solid rgba($color-dodger-blue, 0.5);
+
+  @include hover {
+    box-shadow: 0 1px 2px -2px rgba($color-dodger-blue, 0.16),
+    0 3px 6px 0 rgba($color-dodger-blue, 0.12),
+    0 5px 12px 4px rgba($color-dodger-blue, 0.09);
+  }
+}
+
+.title {
+  font-size: 20px !important;
+
+  @include bp-768 {
+    font-size: 22px !important;
+  }
+
+  @include bp-1600 {
+    font-size: 24px !important;
+  }
+}
+
+.text {
+  font-size: 14px !important;
+
+  @include bp-768 {
+    font-size: 15px !important;
+  }
+
+  @include bp-1600 {
+    font-size: 18px !important;
+  }
+}
+
+.date {
+  & * {
+    margin-top: auto !important;
+
+    font-size: 14px !important;
+    font-weight: 500;
+
+    @include bp-768 {
+      font-size: 15px !important;
+    }
+
+    @include bp-1600 {
+      font-size: 18px !important;
+    }
+  }
+}
