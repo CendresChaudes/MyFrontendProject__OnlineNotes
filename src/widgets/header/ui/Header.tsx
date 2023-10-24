@@ -1,13 +1,14 @@
 import { Layout, Row, Col } from 'antd';
 import { Link } from 'react-router-dom';
-import { useBreakpoint, isMobile } from '@/shared/lib';
+import { useBreakpoint } from '@/shared/lib';
 import { Logo } from '@/shared/ui';
 import styles from './styles.module.scss';
 import { AppRoute } from '@/const';
 
 export function Header() {
   const currentBreakpoint = useBreakpoint();
-  const isMobileBreakpoint = isMobile(currentBreakpoint);
+  const isXsMobileBreakpoint = currentBreakpoint === 'XS';
+  const isSmMobileBreakpoint = currentBreakpoint === 'SM';
 
   const shortLogoUrl = 'img/logo-short.svg';
   const fullLogoUrl = 'img/logo-full.svg';
@@ -18,10 +19,10 @@ export function Header() {
         <Col className={styles.col} span={8}>
           <Link className={styles.link} to={AppRoute.Root}>
             <Logo
-              path={isMobileBreakpoint ? shortLogoUrl : fullLogoUrl}
-              width={isMobileBreakpoint ? 40 : 230}
-              height={isMobileBreakpoint ? 40 : 60}
-              alt='Логотип сервиса "Online notes".'
+              path={isXsMobileBreakpoint ? shortLogoUrl : fullLogoUrl}
+              width={isXsMobileBreakpoint ? 40 : isSmMobileBreakpoint ? 175 : 265}
+              height={isXsMobileBreakpoint ? 40 : isSmMobileBreakpoint ? 45 : 65}
+              alt='Логотип сервиса "Online Notes".'
             />
           </Link>
         </Col>
