@@ -1,7 +1,8 @@
 import { DeleteFilled } from '@ant-design/icons';
+import styles from './styles.module.scss';
 
 export function DeleteNote() {
   return (
-    <DeleteFilled />
+    <DeleteFilled className={styles.icon} />
   );
 }
