@@ -1,0 +1,37 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+
+  @include hover-focus {
+    box-shadow: none;
+    border-color: $color-jade;
+
+    & svg {
+      fill: $color-jade;
+      transition: all $trans-500
+    }
+  }
+}
+
+.icon {
+  font-size: 100px;
+  display: block;
+  text-align: center;
+}
+
+.text {
+  font-size: 18px !important;
+  font-weight: 600;
+  text-align: center;
+  margin: 30px 0 0 0 !important;
+
+  @include bp-768 {
+    font-size: 20px !important;
+  }
+
+  @include bp-1600 {
+    font-size: 22px !important;
+  }
+}

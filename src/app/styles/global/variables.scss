@@ -17,7 +17,9 @@ $color-jade: #00b96b;
 // ---------------------------------
 
 $tf-default: ease;
-$trans-default: 0.3s $tf-default;
+
+$trans-300: 0.3s $tf-default;
+$trans-500: 0.5s $tf-default;
 
 // Breakpoints
 // ---------------------------------

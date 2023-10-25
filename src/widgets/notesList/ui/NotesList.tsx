@@ -1,4 +1,5 @@
 import { Row, Col } from 'antd';
+import { AddNote } from '@/features/addNote';
 import { DeleteNote, EditNote } from '@/features/noteMenu';
 import { Note } from '@/entities/note';
 import styles from './styles.module.scss';
@@ -12,6 +13,17 @@ export function NotesList() {
         { xs: 25, sm: 15, md: 20, lg: 25, xl: 30, xxl: 35 },
       ]}
     >
+      <Col
+        className={styles.col}
+        key='empty-note'
+        xs={{ span: 24 }}
+        sm={{ span: 12 }}
+        lg={{ span: 8 }}
+        xl={{ span: 6 }}
+      >
+        <AddNote />
+      </Col>
+
       {notes.map((note) => (
         <Col
           className={styles.col}

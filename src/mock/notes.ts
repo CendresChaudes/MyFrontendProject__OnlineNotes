@@ -1,7 +1,7 @@
 export const mockNotes = [
   {
     id: '1',
-    title: 'some title #1',
+    title: 'some title #1 some title #1 some title #1',
     text: 'some text #1 some text #1 some text #1 some text #1 some text #1 some text #1 some text #1 some text #1 some text #1 some text #1 some text #1 some text #1 some text #1 some text #1 some text #1 some text #1 some text #1 some text #1 some text #1 some text #1 some text #1 some text #1 some text #1 some text #1 some text #1 some text #1 some text #1 some text #1 some text #1 some text #1 some text #1 some text #1 some text #1 some text #1',
     date: Date.now(),
   },
