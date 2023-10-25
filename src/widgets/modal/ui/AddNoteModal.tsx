@@ -1,4 +1,5 @@
 import { Modal, Form, Input, Typography, Button, Flex } from 'antd';
+import clsx from 'clsx';
 import { ChangeEvent } from 'react';
 import { Mode, changeMode } from '@/entities/note';
 import { useBreakpoint, isMobile, useAppDispatch } from '@/shared/lib';
@@ -8,7 +9,7 @@ const { Title } = Typography;
 const { Item } = Form;
 const { TextArea } = Input;
 
-export function ModalAddNote() {
+export function AddNoteModal() {
   const dispatch = useAppDispatch();
   const currentBreakpoint = useBreakpoint();
   const [form] = Form.useForm();
@@ -21,20 +22,20 @@ export function ModalAddNote() {
     form.setFieldsValue({ text: evt.target.value });
   };
 
-  const onResetForm = () => {
+  const handleFormReset = () => {
     form.resetFields();
   };
 
-  const onFormClose = () => {
-    onResetForm();
+  const handleModalClose = () => {
+    handleFormReset();
     dispatch(changeMode(Mode.Idle));
   };
 
   const buttonSize = isMobile(currentBreakpoint) ? 'large' : 'middle';
 
   return (
-    <Modal open centered footer={false} onCancel={onFormClose}>
-      <Title className={styles.title} level={2}>
+    <Modal open centered footer={false} onCancel={handleModalClose}>
+      <Title className={clsx(styles.title, styles['title--center'])} level={2}>
         Новая заметка
       </Title>
 
@@ -72,7 +73,11 @@ export function ModalAddNote() {
           justify="center"
           gap="middle"
         >
-          <Button htmlType="submit" type="primary" size={buttonSize}>
+          <Button
+            htmlType="submit"
+            type="primary"
+            size={buttonSize}
+          >
             Добавить
           </Button>
 
@@ -80,7 +85,7 @@ export function ModalAddNote() {
             htmlType="button"
             type="default"
             size={buttonSize}
-            onClick={onResetForm}
+            onClick={handleFormReset}
           >
             Сбросить
           </Button>
@@ -89,7 +94,7 @@ export function ModalAddNote() {
             htmlType="button"
             danger
             size={buttonSize}
-            onClick={onFormClose}
+            onClick={handleModalClose}
           >
             Отменить
           </Button>

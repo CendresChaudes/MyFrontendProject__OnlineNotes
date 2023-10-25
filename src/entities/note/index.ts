@@ -1,4 +1,4 @@
 export { Note } from './ui/Note';
-export { noteSlice, changeMode } from './model/noteSlice';
-export { getMode } from './model/selectors';
-export { Mode } from './const';
+export { noteSlice, changeMode, changeCurrentNote } from './model/noteSlice';
+export { getMode, getCurrentNote } from './model/selectors';
+export { Mode, DATE_FORMAT } from './const';

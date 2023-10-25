@@ -62,18 +62,14 @@
 }
 
 .date {
-  & * {
-    margin-top: auto !important;
+  font-size: 14px !important;
+  font-weight: 500;
 
-    font-size: 14px !important;
-    font-weight: 500;
+  @include bp-768 {
+    font-size: 15px !important;
+  }
 
-    @include bp-768 {
-      font-size: 15px !important;
-    }
-
-    @include bp-1600 {
-      font-size: 18px !important;
-    }
+  @include bp-1600 {
+    font-size: 18px !important;
   }
 }

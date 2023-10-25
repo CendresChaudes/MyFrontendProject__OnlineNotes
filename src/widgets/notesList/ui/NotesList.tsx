@@ -15,7 +15,6 @@ export function NotesList() {
     >
       <Col
         className={styles.col}
-        key='empty-note'
         xs={{ span: 24 }}
         sm={{ span: 12 }}
         lg={{ span: 8 }}
@@ -34,8 +33,8 @@ export function NotesList() {
           xl={{ span: 6 }}
         >
           <Note
+            data={note}
             actionSlot={[<EditNote key="edit" />, <DeleteNote key="delete" />]}
-            {...note}
           />
         </Col>
       ))}
