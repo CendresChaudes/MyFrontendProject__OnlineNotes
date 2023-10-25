@@ -1,0 +1,50 @@
+.title {
+  text-align: center;
+  font-size: 20px !important;
+
+  @include bp-768 {
+    font-size: 22px !important;
+  }
+
+  @include bp-1600 {
+    font-size: 24px !important;
+  }
+}
+
+.label {
+  & label {
+    font-size: 15px !important;
+
+    @include bp-768 {
+      font-size: 16px !important;
+    }
+  
+    @include bp-1600 {
+      font-size: 18px !important;
+    }
+  }
+  
+}
+
+.input,
+.textarea {
+  font-size: 14px !important;
+
+  @include bp-768 {
+    font-size: 15px !important;
+  }
+
+  @include bp-1600 {
+    font-size: 17px !important;
+  }
+}
+
+.textarea {
+  & textarea {
+    resize: none !important;
+  }
+}
+
+.buttons {
+  margin-top: 40px;
+}

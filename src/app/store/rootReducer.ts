@@ -1,13 +1,6 @@
-import { combineReducers, createSlice } from '@reduxjs/toolkit';
-
-const mockSlice = createSlice({
-  name: 'mock',
-  initialState: {
-    mockData: '123'
-  },
-  reducers: {},
-});
+import { combineReducers } from '@reduxjs/toolkit';
+import { noteSlice } from '@/entities/note';
 
 export const rootReducer = combineReducers({
-  mockSlice: mockSlice.reducer
+  noteSlice: noteSlice.reducer
 });
