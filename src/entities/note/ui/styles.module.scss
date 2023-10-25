@@ -3,8 +3,18 @@
   flex-direction: column;
   height: 100%;
 
+  & > div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    & > div:first-child {
+      flex-grow: 1;
+    }
+  }
+
   @include hover {
-    border-color: $color-jade !important;
+    border-color: $color-jade;
   }
 }
 
