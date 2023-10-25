@@ -13,8 +13,26 @@
     }
   }
 
-  @include hover {
+  @include hover-focus {
     border-color: $color-jade;
+  }
+
+  @include active {
+    box-shadow: 0 1px 5px 2px rgba($color-wild-strawberry, 0.16),
+      0 3px 6px 2px rgba($color-wild-strawberry, 0.12),
+      0 5px 12px 4px rgba($color-wild-strawberry, 0.09) !important;
+
+    transition: none;
+    border-color: $color-wild-strawberry;
+
+    & > div:first-child {
+      background-color: $color-wild-strawberry;
+    }
+
+    & * {
+      border-color: $color-wild-strawberry;
+      border-inline-end-color: $color-wild-strawberry !important;
+    }
   }
 }
 
