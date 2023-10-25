@@ -2,6 +2,7 @@
   flex-shrink: 0;
   padding: 15px 15px !important;
   border-top: 1px solid $color-jade;
+  background-color: $color-default-white !important;
 
   @include bp-576 {
     padding: 15px 20px !important;

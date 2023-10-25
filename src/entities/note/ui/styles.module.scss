@@ -19,15 +19,15 @@
 }
 
 .title {
-  font-size: 20px !important;
+  font-size: 18px !important;
   color: $color-default-white !important;
 
   @include bp-768 {
-    font-size: 22px !important;
+    font-size: 20px !important;
   }
 
   @include bp-1600 {
-    font-size: 24px !important;
+    font-size: 22px !important;
   }
 }
 
