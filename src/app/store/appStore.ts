@@ -12,3 +12,6 @@ export const appStore = configureStore({
     }
   })
 });
+
+export type State = ReturnType<typeof appStore.getState>;
+export type AppDispatch = typeof appStore.dispatch;
