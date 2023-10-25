@@ -22,7 +22,7 @@ export function Note({ id, title, text, date, actionSlot }: INote) {
     <Card
       className={styles.card}
       title={
-        <Title className={styles.title} level={2}>
+        <Title className={styles.title} level={2} ellipsis={{ rows: 1 }}>
           {title}
         </Title>
       }
