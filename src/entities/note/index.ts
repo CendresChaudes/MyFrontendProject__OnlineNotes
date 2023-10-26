@@ -5,12 +5,12 @@ export { updateNote } from './api/updateNote';
 export { Note } from './ui/Note';
 export { noteSlice, changeMode, changeCurrentNote } from './model/noteSlice';
 export {
-  getModeSelector,
-  getNotesSelector,
-  getCurrentNoteSelector,
-  getGetNotesStatusSelector,
-  getPostNoteStatusSelector,
-  getDeleteNoteStatusSelector,
-  getUpdateNoteStatusSelector,
+  modeSelector,
+  notesSelector,
+  currentNoteSelector,
+  getNotesStatusSelector,
+  postNoteStatusSelector,
+  deleteNoteStatusSelector,
+  updateNoteStatusSelector,
 } from './model/selectors';
 export { Mode, DATE_FORMAT } from './const';

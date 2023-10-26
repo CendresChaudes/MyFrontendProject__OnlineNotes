@@ -1,7 +1,7 @@
-export const getModeSelector = (state: State) => state.note.mode;
-export const getNotesSelector = (state: State) => state.note.notes;
-export const getCurrentNoteSelector = (state: State) => state.note.currentNote;
-export const getGetNotesStatusSelector = (state: State) => state.note.getNotesStatus;
-export const getPostNoteStatusSelector = (state: State) => state.note.postNoteStatus;
-export const getDeleteNoteStatusSelector = (state: State) => state.note.deleteNoteStatus;
-export const getUpdateNoteStatusSelector = (state: State) => state.note.updateNoteStatus;
+export const modeSelector = (state: State) => state.note.mode;
+export const notesSelector = (state: State) => state.note.notes;
+export const currentNoteSelector = (state: State) => state.note.currentNote;
+export const getNotesStatusSelector = (state: State) => state.note.getNotesStatus;
+export const postNoteStatusSelector = (state: State) => state.note.postNoteStatus;
+export const deleteNoteStatusSelector = (state: State) => state.note.deleteNoteStatus;
+export const updateNoteStatusSelector = (state: State) => state.note.updateNoteStatus;

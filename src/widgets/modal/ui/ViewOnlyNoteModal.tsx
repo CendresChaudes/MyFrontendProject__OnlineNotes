@@ -6,7 +6,7 @@ import {
   Mode,
   changeCurrentNote,
   changeMode,
-  getCurrentNote,
+  currentNoteSelector,
 } from '@/entities/note';
 import {
   isMobile,
@@ -21,7 +21,7 @@ const { Meta } = Card;
 
 export function ViewOnlyNoteModal() {
   const dispatch = useAppDispatch();
-  const currentNote = useAppSelector(getCurrentNote);
+  const currentNote = useAppSelector(currentNoteSelector);
   const currentBreakpoint = useBreakpoint();
 
   const handleModalClose = () => {

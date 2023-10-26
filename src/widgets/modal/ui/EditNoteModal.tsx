@@ -1,7 +1,7 @@
 import { Modal, Form, Input, Typography, Button, Flex } from 'antd';
 import clsx from 'clsx';
 import { ChangeEvent } from 'react';
-import { Mode, changeMode, getCurrentNote } from '@/entities/note';
+import { Mode, changeMode, currentNoteSelector } from '@/entities/note';
 import {
   useBreakpoint,
   isMobile,
@@ -16,7 +16,7 @@ const { TextArea } = Input;
 
 export function EditNoteModal() {
   const dispatch = useAppDispatch();
-  const currentNote = useAppSelector(getCurrentNote);
+  const currentNote = useAppSelector(currentNoteSelector);
   const currentBreakpoint = useBreakpoint();
   const [form] = Form.useForm();
 
