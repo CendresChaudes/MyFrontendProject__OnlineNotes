@@ -19,5 +19,5 @@ export function Modal() {
     return <EditNoteModal />;
   }
 
-  return undefined;
+  return null;
 }

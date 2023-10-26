@@ -28,7 +28,7 @@ export function EditNoteModal() {
   const [form] = Form.useForm();
 
   if (!currentNote) {
-    return undefined;
+    return null;
   }
 
   const handleModalOpen = () => {

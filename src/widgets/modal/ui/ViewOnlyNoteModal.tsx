@@ -36,7 +36,7 @@ export function ViewOnlyNoteModal() {
   const buttonSize = isMobile(currentBreakpoint) ? 'large' : 'middle';
 
   if (!currentNote) {
-    return undefined;
+    return null;
   }
 
   return (
