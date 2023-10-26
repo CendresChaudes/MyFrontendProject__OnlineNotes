@@ -7,12 +7,12 @@ import styles from './styles.module.scss';
 export function AddNote() {
   const dispatch = useAppDispatch();
 
-  const handleAddNoteClick = () => {
+  const handleAddNoteModalOpen = () => {
     dispatch(changeMode(Mode.Add));
   };
 
   return (
-    <Card className={styles.card} hoverable onClick={handleAddNoteClick}>
+    <Card className={styles.card} hoverable onClick={handleAddNoteModalOpen}>
       <FileAddOutlined className={styles.icon} />
       <Typography.Paragraph className={styles.text}>
         Добавить новую заметку

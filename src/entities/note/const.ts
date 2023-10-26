@@ -5,5 +5,4 @@ export enum Mode {
   Add = 'add',
   ViewOnly = 'view-only',
   Edit = 'edit',
-  Delete = 'delete',
 }

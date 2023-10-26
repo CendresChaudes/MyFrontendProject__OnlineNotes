@@ -1,5 +1,5 @@
 interface INoteData {
-  id?: string;
+  id: string;
   title: string;
   text: string;
   date: number;

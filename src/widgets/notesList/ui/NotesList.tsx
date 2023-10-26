@@ -52,7 +52,7 @@ export function NotesList() {
             data={note}
             actionSlot={[
               <EditNote data={note} key="edit" />,
-              <DeleteNote key="delete" />,
+              <DeleteNote id={note.id} key="delete" />,
             ]}
           />
         </Col>

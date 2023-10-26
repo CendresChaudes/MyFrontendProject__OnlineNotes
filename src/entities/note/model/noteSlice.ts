@@ -72,8 +72,9 @@ export const noteSlice = createSlice({
       .addCase(deleteNote.pending, (state) => {
         state.deleteNoteStatus = APIStatus.Pending;
       })
-      .addCase(deleteNote.fulfilled, (state) => {
+      .addCase(deleteNote.fulfilled, (state, action: PayloadAction<string>) => {
         state.deleteNoteStatus = APIStatus.Fulfilled;
+        state.notes = state.notes.filter((item) => item.id !== action.payload);
       })
       .addCase(deleteNote.rejected, (state) => {
         state.deleteNoteStatus = APIStatus.Rejected;
