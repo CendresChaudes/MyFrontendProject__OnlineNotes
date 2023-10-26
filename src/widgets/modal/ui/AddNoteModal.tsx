@@ -23,7 +23,7 @@ const { TextArea } = Input;
 export function AddNoteModal() {
   const dispatch = useAppDispatch();
   const currentBreakpoint = useBreakpoint();
-  const postNoteStatusObject = useAppSelector(postNoteStatusObjectSelector);
+  const postNoteStatus = useAppSelector(postNoteStatusObjectSelector);
   const [form] = Form.useForm();
 
   const handleTitleChange = (evt: ChangeEvent<HTMLInputElement>) => {
@@ -38,14 +38,14 @@ export function AddNoteModal() {
     form.resetFields();
   };
 
-  const handleModeChange = () => {
+  const handleModeReset = () => {
     dispatch(changeMode(Mode.Idle));
   };
 
   const handleModalClose = () => {
-    if (!postNoteStatusObject.isPending) {
+    if (!postNoteStatus.isPending) {
       handleFormReset();
-      handleModeChange();
+      handleModeReset();
     }
   };
 
@@ -61,7 +61,7 @@ export function AddNoteModal() {
           text,
           date: Date.now(),
         },
-        handleModeChange,
+        handleModeReset,
       ])
     );
   };
@@ -73,7 +73,7 @@ export function AddNoteModal() {
       open
       centered
       footer={false}
-      closeIcon={!postNoteStatusObject.isPending}
+      closeIcon={!postNoteStatus.isPending}
       onCancel={handleModalClose}
     >
       <Title className={clsx(styles.title, styles['title--center'])} level={2}>
@@ -95,7 +95,7 @@ export function AddNoteModal() {
           <Input
             className={styles.input}
             allowClear
-            disabled={postNoteStatusObject.isPending}
+            disabled={postNoteStatus.isPending}
             onChange={handleTitleChange}
           />
         </Item>
@@ -110,7 +110,7 @@ export function AddNoteModal() {
             className={styles.textarea}
             rows={8}
             allowClear
-            disabled={postNoteStatusObject.isPending}
+            disabled={postNoteStatus.isPending}
             onChange={handleTextChange}
           />
         </Item>
@@ -125,7 +125,7 @@ export function AddNoteModal() {
             htmlType="submit"
             type="primary"
             size={buttonSize}
-            loading={postNoteStatusObject.isPending}
+            loading={postNoteStatus.isPending}
           >
             Добавить
           </Button>
@@ -134,7 +134,7 @@ export function AddNoteModal() {
             htmlType="button"
             type="default"
             size={buttonSize}
-            disabled={postNoteStatusObject.isPending}
+            disabled={postNoteStatus.isPending}
             onClick={handleFormReset}
           >
             Сбросить
@@ -144,7 +144,7 @@ export function AddNoteModal() {
             htmlType="button"
             danger
             size={buttonSize}
-            disabled={postNoteStatusObject.isPending}
+            disabled={postNoteStatus.isPending}
             onClick={handleModalClose}
           >
             Отменить

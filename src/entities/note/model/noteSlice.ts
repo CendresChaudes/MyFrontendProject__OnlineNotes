@@ -9,7 +9,7 @@ import { Mode } from '../const';
 interface IInitialState {
   mode: Mode;
   notes: INoteData[];
-  currentNote: INoteData | null;
+  currentNote: Nullable<INoteData>;
   getNotesStatus: APIStatus;
   postNoteStatus: APIStatus;
   deleteNoteStatus: APIStatus;
@@ -33,7 +33,7 @@ export const noteSlice = createSlice({
     changeMode(state, action: PayloadAction<Mode>) {
       state.mode = action.payload;
     },
-    changeCurrentNote(state, action: PayloadAction<INoteData | null>) {
+    changeCurrentNote(state, action: PayloadAction<Nullable<INoteData>>) {
       state.currentNote = action.payload;
     }
   },
@@ -59,6 +59,16 @@ export const noteSlice = createSlice({
       .addCase(postNote.rejected, (state) => {
         state.postNoteStatus = APIStatus.Rejected;
       })
+      .addCase(updateNote.pending, (state) => {
+        state.updateNoteStatus = APIStatus.Pending;
+      })
+      .addCase(updateNote.fulfilled, (state, action: PayloadAction<INoteData>) => {
+        state.updateNoteStatus = APIStatus.Fulfilled;
+        state.notes = state.notes.map((item) => (item.id === action.payload.id) ? action.payload : item);
+      })
+      .addCase(updateNote.rejected, (state) => {
+        state.updateNoteStatus = APIStatus.Rejected;
+      })
       .addCase(deleteNote.pending, (state) => {
         state.deleteNoteStatus = APIStatus.Pending;
       })
@@ -67,15 +77,6 @@ export const noteSlice = createSlice({
       })
       .addCase(deleteNote.rejected, (state) => {
         state.deleteNoteStatus = APIStatus.Rejected;
-      })
-      .addCase(updateNote.pending, (state) => {
-        state.updateNoteStatus = APIStatus.Pending;
-      })
-      .addCase(updateNote.fulfilled, (state) => {
-        state.updateNoteStatus = APIStatus.Fulfilled;
-      })
-      .addCase(updateNote.rejected, (state) => {
-        state.updateNoteStatus = APIStatus.Rejected;
       });
   }
 });

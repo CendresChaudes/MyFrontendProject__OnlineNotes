@@ -7,10 +7,14 @@ export const postNote = createAsyncThunk<
   INoteData,
   [INoteData, () => void],
   FirebaseThunkAPI
-    >('api/postNote', async ([newNoteData, callback], { dispatch, extra: api }) => {
-      const docRef = doc(api, APIRoute.Notes, newNoteData.id!);
-      delete newNoteData['id'];
+    >(
+    'api/postNote',
+    async ([newNoteData, callback], { dispatch, extra: api }) => {
       try {
+        const noteId = newNoteData.id;
+        const docRef = doc(api, APIRoute.Notes, noteId!);
+        delete newNoteData['id'];
+
         // eslint-disable-next-line @typescript-eslint/require-await
         await runTransaction(api, async (transaction) => {
           transaction.set(docRef, newNoteData);
@@ -20,7 +24,7 @@ export const postNote = createAsyncThunk<
           callback();
         }
 
-        return newNoteData;
+        return { ...newNoteData, id: noteId };
       } catch {
         dispatch(
           changeNotification({

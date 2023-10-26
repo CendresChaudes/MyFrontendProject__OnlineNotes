@@ -1,7 +1,13 @@
 import { Modal, Form, Input, Typography, Button, Flex } from 'antd';
 import clsx from 'clsx';
 import { ChangeEvent } from 'react';
-import { Mode, changeMode, currentNoteSelector } from '@/entities/note';
+import {
+  Mode,
+  changeMode,
+  currentNoteSelector,
+  updateNote,
+  updateNoteStatusObjectSelector,
+} from '@/entities/note';
 import {
   useBreakpoint,
   isMobile,
@@ -17,6 +23,7 @@ const { TextArea } = Input;
 export function EditNoteModal() {
   const dispatch = useAppDispatch();
   const currentNote = useAppSelector(currentNoteSelector);
+  const updateNoteStatus = useAppSelector(updateNoteStatusObjectSelector);
   const currentBreakpoint = useBreakpoint();
   const [form] = Form.useForm();
 
@@ -40,9 +47,32 @@ export function EditNoteModal() {
     form.resetFields();
   };
 
-  const handleModalClose = () => {
-    handleFormReset();
+  const handleModeReset = () => {
     dispatch(changeMode(Mode.Idle));
+  };
+
+  const handleModalClose = () => {
+    if (!updateNoteStatus.isPending) {
+      handleFormReset();
+      handleModeReset();
+    }
+  };
+
+  const handleFormSubmit = ({
+    title,
+    text,
+  }: Pick<INoteData, 'title' | 'text'>) => {
+    dispatch(
+      updateNote([
+        {
+          id: currentNote.id,
+          title,
+          text,
+          date: Date.now(),
+        },
+        handleModeReset,
+      ])
+    );
   };
 
   const buttonSize = isMobile(currentBreakpoint) ? 'large' : 'middle';
@@ -52,6 +82,7 @@ export function EditNoteModal() {
       open
       centered
       footer={false}
+      closeIcon={!updateNoteStatus.isPending}
       afterOpenChange={handleModalOpen}
       onCancel={handleModalClose}
     >
@@ -59,7 +90,12 @@ export function EditNoteModal() {
         Редактирование заметки
       </Title>
 
-      <Form form={form} layout="vertical" autoComplete="off">
+      <Form
+        form={form}
+        layout="vertical"
+        autoComplete="off"
+        onFinish={handleFormSubmit}
+      >
         <Item
           className={styles.label}
           label="Заголовок"
@@ -69,6 +105,7 @@ export function EditNoteModal() {
           <Input
             className={styles.input}
             allowClear
+            disabled={updateNoteStatus.isPending}
             onChange={handleTitleChange}
           />
         </Item>
@@ -83,6 +120,7 @@ export function EditNoteModal() {
             className={styles.textarea}
             rows={8}
             allowClear
+            disabled={updateNoteStatus.isPending}
             onChange={handleTextChange}
           />
         </Item>
@@ -97,6 +135,7 @@ export function EditNoteModal() {
             htmlType="submit"
             type="primary"
             size={buttonSize}
+            loading={updateNoteStatus.isPending}
           >
             Сохранить
           </Button>
@@ -105,6 +144,7 @@ export function EditNoteModal() {
             htmlType="button"
             type="default"
             size={buttonSize}
+            disabled={updateNoteStatus.isPending}
             onClick={handleFormReset}
           >
             Сбросить
@@ -114,6 +154,7 @@ export function EditNoteModal() {
             htmlType="button"
             danger
             size={buttonSize}
+            disabled={updateNoteStatus.isPending}
             onClick={handleModalClose}
           >
             Отменить
