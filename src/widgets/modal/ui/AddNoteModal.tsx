@@ -43,8 +43,10 @@ export function AddNoteModal() {
   };
 
   const handleModalClose = () => {
-    handleFormReset();
-    handleModeChange();
+    if (!postNoteStatusObject.isPending) {
+      handleFormReset();
+      handleModeChange();
+    }
   };
 
   const handleFormSubmit = ({
