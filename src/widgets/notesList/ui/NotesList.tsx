@@ -3,9 +3,12 @@ import { AddNote } from '@/features/addNote';
 import { DeleteNote, EditNote } from '@/features/noteMenu';
 import { Note } from '@/entities/note';
 import styles from './styles.module.scss';
-import { mockNotes as notes } from '@/mock/notes';
 
-export function NotesList() {
+interface INotesList {
+  notes: INoteData[];
+}
+
+export function NotesList({ notes }: INotesList) {
   return (
     <Row
       gutter={[
