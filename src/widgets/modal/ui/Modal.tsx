@@ -1,6 +1,7 @@
 import { getMode, Mode } from '@/entities/note';
 import { useAppSelector } from '@/shared/lib';
 import { AddNoteModal } from './AddNoteModal';
+import { EditNoteModal } from './EditNoteModal';
 import { ViewOnlyNoteModal } from './ViewOnlyNoteModal';
 
 export function Modal() {
@@ -15,9 +16,7 @@ export function Modal() {
   }
 
   if (mode === Mode.Edit) {
-    alert('Changed to edit mode!');
-
-    return undefined;
+    return <EditNoteModal />;
   }
 
   return undefined;

@@ -34,7 +34,10 @@ export function NotesList() {
         >
           <Note
             data={note}
-            actionSlot={[<EditNote key="edit" />, <DeleteNote key="delete" />]}
+            actionSlot={[
+              <EditNote data={note} key="edit" />,
+              <DeleteNote key="delete" />,
+            ]}
           />
         </Col>
       ))}
