@@ -4,4 +4,5 @@ export enum AppRoute {
 }
 
 export enum APIRoute {
+  Notes = 'notes',
 }
