@@ -8,7 +8,7 @@ export {
   modeSelector,
   notesSelector,
   currentNoteSelector,
-  getNotesStatusSelector,
+  getNotesStatusObject,
   postNoteStatusSelector,
   deleteNoteStatusSelector,
   updateNoteStatusSelector,

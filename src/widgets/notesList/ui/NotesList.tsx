@@ -1,14 +1,23 @@
 import { Row, Col } from 'antd';
 import { AddNote } from '@/features/addNote';
 import { DeleteNote, EditNote } from '@/features/noteMenu';
-import { Note } from '@/entities/note';
+import { Note, getNotesStatusObject, notesSelector } from '@/entities/note';
+import { useAppDispatch, useAppSelector } from '@/shared/lib';
+import { Loader } from '@/shared/ui';
+import { useLoadNotes } from '../hooks/useLoadNotes';
 import styles from './styles.module.scss';
 
-interface INotesList {
-  notes: INoteData[];
-}
+export function NotesList() {
+  const dispatch = useAppDispatch();
+  const notes = useAppSelector(notesSelector);
+  const getNotesStatus = useAppSelector(getNotesStatusObject);
 
-export function NotesList({ notes }: INotesList) {
+  useLoadNotes(dispatch);
+
+  if (getNotesStatus.isUncompleted) {
+    return <Loader fullPage={false} />;
+  }
+
   return (
     <Row
       gutter={[
