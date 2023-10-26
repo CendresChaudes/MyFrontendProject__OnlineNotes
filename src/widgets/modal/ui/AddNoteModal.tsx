@@ -1,7 +1,8 @@
+import { nanoid } from '@reduxjs/toolkit';
 import { Modal, Form, Input, Typography, Button, Flex } from 'antd';
 import clsx from 'clsx';
 import { ChangeEvent } from 'react';
-import { Mode, changeMode } from '@/entities/note';
+import { Mode, changeMode, postNote } from '@/entities/note';
 import { useBreakpoint, isMobile, useAppDispatch } from '@/shared/lib';
 import styles from './styles.module.scss';
 
@@ -26,9 +27,30 @@ export function AddNoteModal() {
     form.resetFields();
   };
 
+  const handleModeChange = () => {
+    dispatch(changeMode(Mode.Idle));
+  };
+
   const handleModalClose = () => {
     handleFormReset();
-    dispatch(changeMode(Mode.Idle));
+    handleModeChange();
+  };
+
+  const handleFormSubmit = ({
+    title,
+    text,
+  }: Pick<INoteData, 'title' | 'text'>) => {
+    dispatch(
+      postNote([
+        {
+          id: nanoid(),
+          title,
+          text,
+          date: Date.now(),
+        },
+        handleModeChange,
+      ])
+    );
   };
 
   const buttonSize = isMobile(currentBreakpoint) ? 'large' : 'middle';
@@ -39,7 +61,12 @@ export function AddNoteModal() {
         Новая заметка
       </Title>
 
-      <Form form={form} layout="vertical" autoComplete="off">
+      <Form
+        form={form}
+        layout="vertical"
+        autoComplete="off"
+        onFinish={handleFormSubmit}
+      >
         <Item
           className={styles.label}
           label="Заголовок"
