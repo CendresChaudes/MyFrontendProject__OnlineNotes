@@ -10,52 +10,18 @@
   height: 100vh;
 }
 
-.loader {
-  position: relative;
-
-  width: 100px;
-  height: 100px;
-
-  &::after,
-  &::before {
-    content: '';
-    position: absolute;
-
-    border-radius: 50%;
-    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.3) inset;
-
-    inset: 0;
-  }
-
-  &::after {
-    animation: rotate 2s linear infinite;
-  }
-}
-
-.loader--blue:after {
-  box-shadow: 0 2px 0 #1677ff inset;
-}
-
-@keyframes rotate {
-  0% {
-    transform: rotate(0);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 .text {
   font-weight: 700;
   font-size: 28px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
     'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  color: $color-default-black;
 
   @include bp-768 {
     font-size: 30px !important;
   }
-
+  
   @include bp-1600 {
     font-size: 32px !important;
   }

@@ -17,9 +17,14 @@ export const theme = {
     Divider: {
       colorSplit: 'rgba(0, 185, 107, 0.35)',
       colorText: 'rgba(0, 185, 107, 0.5)',
+      marginXS: 4,
       margin: 12,
       marginLG: 16,
-      marginXS: 4
+    },
+    Spin: {
+      dotSizeSM: 60,
+      dotSize: 80,
+      dotSizeLG: 100
     }
   }
 };
