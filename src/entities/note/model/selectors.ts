@@ -1,11 +1,14 @@
-import { createStatusObj } from '@/shared/lib';
+import { createStatusObjectSelector } from '@/shared/lib';
 
 export const modeSelector = (state: State) => state.note.mode;
 export const notesSelector = (state: State) => state.note.notes;
 export const currentNoteSelector = (state: State) => state.note.currentNote;
 const getNotesStatusSelector = (state: State) => state.note.getNotesStatus;
-export const postNoteStatusSelector = (state: State) => state.note.postNoteStatus;
-export const deleteNoteStatusSelector = (state: State) => state.note.deleteNoteStatus;
-export const updateNoteStatusSelector = (state: State) => state.note.updateNoteStatus;
+const postNoteStatusSelector = (state: State) => state.note.postNoteStatus;
+const deleteNoteStatusSelector = (state: State) => state.note.deleteNoteStatus;
+const updateNoteStatusSelector = (state: State) => state.note.updateNoteStatus;
 
-export const getNotesStatusObject = createStatusObj(getNotesStatusSelector);
+export const getNotesStatusObjectSelector = createStatusObjectSelector(getNotesStatusSelector);
+export const postNoteStatusObjectSelector = createStatusObjectSelector(postNoteStatusSelector);
+export const deleteNoteStatusObjectSelector = createStatusObjectSelector(deleteNoteStatusSelector);
+export const updateNoteStatusObjectSelector = createStatusObjectSelector(updateNoteStatusSelector);

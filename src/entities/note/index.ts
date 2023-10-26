@@ -8,9 +8,9 @@ export {
   modeSelector,
   notesSelector,
   currentNoteSelector,
-  getNotesStatusObject,
-  postNoteStatusSelector,
-  deleteNoteStatusSelector,
-  updateNoteStatusSelector,
+  getNotesStatusObjectSelector,
+  postNoteStatusObjectSelector,
+  deleteNoteStatusObjectSelector,
+  updateNoteStatusObjectSelector,
 } from './model/selectors';
 export { Mode, DATE_FORMAT } from './const';

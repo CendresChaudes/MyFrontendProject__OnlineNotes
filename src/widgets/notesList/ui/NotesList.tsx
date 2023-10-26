@@ -1,7 +1,11 @@
 import { Row, Col } from 'antd';
 import { AddNote } from '@/features/addNote';
 import { DeleteNote, EditNote } from '@/features/noteMenu';
-import { Note, getNotesStatusObject, notesSelector } from '@/entities/note';
+import {
+  Note,
+  getNotesStatusObjectSelector,
+  notesSelector,
+} from '@/entities/note';
 import { useAppDispatch, useAppSelector } from '@/shared/lib';
 import { Loader } from '@/shared/ui';
 import { useLoadNotes } from '../hooks/useLoadNotes';
@@ -10,11 +14,11 @@ import styles from './styles.module.scss';
 export function NotesList() {
   const dispatch = useAppDispatch();
   const notes = useAppSelector(notesSelector);
-  const getNotesStatus = useAppSelector(getNotesStatusObject);
+  const getNotesStatusObject = useAppSelector(getNotesStatusObjectSelector);
 
   useLoadNotes(dispatch);
 
-  if (getNotesStatus.isUncompleted) {
+  if (getNotesStatusObject.isUncompleted) {
     return <Loader fullPage={false} />;
   }
 

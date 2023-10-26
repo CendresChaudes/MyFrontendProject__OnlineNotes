@@ -2,8 +2,18 @@ import { nanoid } from '@reduxjs/toolkit';
 import { Modal, Form, Input, Typography, Button, Flex } from 'antd';
 import clsx from 'clsx';
 import { ChangeEvent } from 'react';
-import { Mode, changeMode, postNote } from '@/entities/note';
-import { useBreakpoint, isMobile, useAppDispatch } from '@/shared/lib';
+import {
+  Mode,
+  changeMode,
+  postNote,
+  postNoteStatusObjectSelector,
+} from '@/entities/note';
+import {
+  useBreakpoint,
+  isMobile,
+  useAppDispatch,
+  useAppSelector,
+} from '@/shared/lib';
 import styles from './styles.module.scss';
 
 const { Title } = Typography;
@@ -13,6 +23,7 @@ const { TextArea } = Input;
 export function AddNoteModal() {
   const dispatch = useAppDispatch();
   const currentBreakpoint = useBreakpoint();
+  const postNoteStatusObject = useAppSelector(postNoteStatusObjectSelector);
   const [form] = Form.useForm();
 
   const handleTitleChange = (evt: ChangeEvent<HTMLInputElement>) => {
@@ -56,7 +67,13 @@ export function AddNoteModal() {
   const buttonSize = isMobile(currentBreakpoint) ? 'large' : 'middle';
 
   return (
-    <Modal open centered footer={false} onCancel={handleModalClose}>
+    <Modal
+      open
+      centered
+      footer={false}
+      closeIcon={!postNoteStatusObject.isPending}
+      onCancel={handleModalClose}
+    >
       <Title className={clsx(styles.title, styles['title--center'])} level={2}>
         Новая заметка
       </Title>
@@ -76,6 +93,7 @@ export function AddNoteModal() {
           <Input
             className={styles.input}
             allowClear
+            disabled={postNoteStatusObject.isPending}
             onChange={handleTitleChange}
           />
         </Item>
@@ -90,6 +108,7 @@ export function AddNoteModal() {
             className={styles.textarea}
             rows={8}
             allowClear
+            disabled={postNoteStatusObject.isPending}
             onChange={handleTextChange}
           />
         </Item>
@@ -104,6 +123,7 @@ export function AddNoteModal() {
             htmlType="submit"
             type="primary"
             size={buttonSize}
+            loading={postNoteStatusObject.isPending}
           >
             Добавить
           </Button>
@@ -112,6 +132,7 @@ export function AddNoteModal() {
             htmlType="button"
             type="default"
             size={buttonSize}
+            disabled={postNoteStatusObject.isPending}
             onClick={handleFormReset}
           >
             Сбросить
@@ -121,6 +142,7 @@ export function AddNoteModal() {
             htmlType="button"
             danger
             size={buttonSize}
+            disabled={postNoteStatusObject.isPending}
             onClick={handleModalClose}
           >
             Отменить
