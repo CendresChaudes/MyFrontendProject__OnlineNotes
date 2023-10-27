@@ -25,6 +25,9 @@ export const theme = {
       dotSizeSM: 60,
       dotSize: 80,
       dotSizeLG: 100
+    },
+    Button: {
+      colorPrimaryHover: 'rgba(32, 199, 124, 0.9)'
     }
   }
 };
