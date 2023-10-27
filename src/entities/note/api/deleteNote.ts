@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { deleteDoc, doc } from 'firebase/firestore';
+import { doc, runTransaction } from 'firebase/firestore';
 import { changeNotification } from '@/shared/lib';
 import { APIRoute } from '@/const';
 
@@ -11,7 +11,12 @@ export const deleteNote = createAsyncThunk<
     'api/deleteNote',
     async ([id, callback], { dispatch, extra: api }) => {
       try {
-        await deleteDoc(doc(api, APIRoute.Notes, id));
+        const docRef = doc(api, APIRoute.Notes, id);
+
+        // eslint-disable-next-line @typescript-eslint/require-await
+        await runTransaction(api, async (transaction) => {
+          transaction.delete(docRef);
+        });
 
         if (callback) {
           callback();
