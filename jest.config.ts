@@ -19,6 +19,9 @@ export default {
     '!**/const.ts',
     '!**/mock/**',
     '!**/tests/**',
+    '!**/actions/**',
+    '!**/shared/lib/react/hooks/**',
+    '!**/shared/api/firebase/lib/**',
     '!**/node_modules/**',
     '!**/vendor/**',
     '!**/*.config.ts'

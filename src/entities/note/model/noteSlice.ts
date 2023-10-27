@@ -9,8 +9,8 @@ import { Mode } from '../const';
 interface IInitialState {
   mode: Mode;
   notes: INoteData[];
-  currentNote: Nullable<INoteData>;
   deletingNotesId: string[];
+  currentNote: Nullable<INoteData>;
   getNotesStatus: APIStatus;
   postNoteStatus: APIStatus;
   deleteNoteStatus: APIStatus;
@@ -20,8 +20,8 @@ interface IInitialState {
 const initialState: IInitialState = {
   mode: Mode.Idle,
   notes: [],
-  currentNote: null,
   deletingNotesId: [],
+  currentNote: null,
   getNotesStatus: APIStatus.Idle,
   postNoteStatus: APIStatus.Idle,
   deleteNoteStatus: APIStatus.Idle,
