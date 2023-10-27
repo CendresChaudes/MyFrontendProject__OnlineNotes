@@ -4,7 +4,7 @@ export default {
   preset: 'ts-jest',
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
-    '\\.css$': '<rootDir>/__mocks__/styleMock.js'
+    '\\.(css|scss)$': '<rootDir>/__mocks__/styleMock.js'
   },
   globals: {
     'ts-jest': {

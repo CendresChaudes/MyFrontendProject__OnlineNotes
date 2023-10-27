@@ -1,7 +1,7 @@
 import { render, screen } from '@/shared/tests';
 import { NotFoundPage } from './NotFoundPage';
 
-jest.mock('@/shared/lib/react/hooks/useBreakpoint', () => ({
+jest.mock('@/shared/lib/react/hooks/useBreakpoint/useBreakpoint', () => ({
   useBreakpoint: () => null
 }));
 
