@@ -26,6 +26,7 @@
   }
 
   @include active {
+    border-color: $color-transparent !important;
     box-shadow: 0 1px 5px 2px rgba($color-purple-heart, 0.16),
       0 3px 6px 2px rgba($color-purple-heart, 0.12),
       0 5px 12px 4px rgba($color-purple-heart, 0.09) !important;
