@@ -1,7 +1,7 @@
 import { nanoid } from '@reduxjs/toolkit';
-import { Modal, Form, Input, Typography, Button, Flex } from 'antd';
+import { Modal, Form, Input, Typography, Button, Flex, InputRef } from 'antd';
 import clsx from 'clsx';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, Ref, useRef } from 'react';
 import {
   Mode,
   changeMode,
@@ -21,10 +21,14 @@ const { Item } = Form;
 const { TextArea } = Input;
 
 export function AddNoteModal() {
+  const inputRef = useRef();
   const dispatch = useAppDispatch();
   const currentBreakpoint = useBreakpoint();
   const postNoteStatus = useAppSelector(postNoteStatusObjectSelector);
   const [form] = Form.useForm();
+
+  const handleModalOpen = (open: boolean) =>
+    open && (inputRef.current as unknown as HTMLInputElement)?.focus();
 
   const handleTitleChange = (evt: ChangeEvent<HTMLInputElement>) => {
     form.setFieldsValue({ title: evt.target.value });
@@ -75,6 +79,7 @@ export function AddNoteModal() {
       footer={false}
       closeIcon={!postNoteStatus.isPending}
       onCancel={handleModalClose}
+      afterOpenChange={handleModalOpen}
     >
       <Title className={clsx(styles.title, styles['title--center'])} level={2}>
         Новая заметка
@@ -95,6 +100,7 @@ export function AddNoteModal() {
           <Input
             className={styles.input}
             allowClear
+            ref={inputRef as unknown as Ref<InputRef>}
             disabled={postNoteStatus.isPending}
             onChange={handleTitleChange}
           />
