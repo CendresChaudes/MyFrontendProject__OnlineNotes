@@ -18,13 +18,13 @@
       0 3px 6px 2px rgba($color-jade, 0.12),
       0 5px 12px 4px rgba($color-jade, 0.09) !important;
 
-    border-color: $color-jade;
+    border-color: $color-jade !important;
     outline: none;
   }
 
   @include hover-mobile {
-    box-shadow: none;
-    border-color: $color-jade;
+    box-shadow: none !important;
+    border-color: $color-jade !important;
   }
 
   @include active {
@@ -33,14 +33,14 @@
       0 5px 12px 4px rgba($color-wild-strawberry, 0.09) !important;
 
     transition: none;
-    border-color: $color-wild-strawberry;
+    border-color: $color-wild-strawberry !important;
 
     & > div:first-child {
       background-color: $color-wild-strawberry;
     }
 
     & * {
-      border-color: $color-wild-strawberry;
+      border-color: $color-wild-strawberry !important;
       border-inline-end-color: $color-wild-strawberry !important;
     }
   }

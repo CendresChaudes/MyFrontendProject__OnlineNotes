@@ -21,8 +21,8 @@
   }
 
   @include hover-mobile {
-    box-shadow: none;
-    border-color: $color-jade;
+    box-shadow: none !important;
+    border-color: $color-coral !important;
   }
 
   @include active {
