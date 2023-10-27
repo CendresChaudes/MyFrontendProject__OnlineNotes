@@ -1,6 +1,11 @@
 .icon {
   font-size: 17px !important;
-  
+
+  @include focus {
+    color: $color-jade !important;
+    outline: none;
+  }
+
   @include active {
     color: $color-wild-strawberry !important;
     transition: none !important;

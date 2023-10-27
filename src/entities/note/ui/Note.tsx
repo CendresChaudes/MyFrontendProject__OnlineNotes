@@ -33,11 +33,13 @@ export function Note({ data, actionSlot }: INote) {
       }
       actions={actionSlot}
       hoverable
+      tabIndex={0}
       onClick={handleNoteClick}
     >
       <Paragraph className={styles.text} ellipsis={{ rows: 6 }}>
         {data.text}
       </Paragraph>
+
       <Meta
         className={styles.date}
         description={dayjs(data.date).locale('ru').format(DATE_FORMAT)}

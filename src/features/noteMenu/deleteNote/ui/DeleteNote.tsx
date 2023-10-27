@@ -1,7 +1,7 @@
 import { DeleteFilled } from '@ant-design/icons';
-import { MouseEvent } from 'react';
+import { MouseEvent, KeyboardEvent } from 'react';
 import { deleteNote } from '@/entities/note';
-import { useAppDispatch } from '@/shared/lib';
+import { isActivationKey, useAppDispatch } from '@/shared/lib';
 import styles from './styles.module.scss';
 
 interface IDeleteNote {
@@ -11,11 +11,24 @@ interface IDeleteNote {
 export function DeleteNote({ id }: IDeleteNote) {
   const dispatch = useAppDispatch();
 
-  const handleNoteDelete = (evt: MouseEvent) => {
+  const handleNoteDeleteByClick = (evt: MouseEvent) => {
     evt.stopPropagation();
 
     dispatch(deleteNote(id));
   };
 
-  return <DeleteFilled className={styles.icon} onClick={handleNoteDelete} />;
+  const handleNoteDeleteByKeyDown = (evt: KeyboardEvent) => {
+    if (isActivationKey(evt)) {
+      dispatch(deleteNote(id));
+    }
+  };
+
+  return (
+    <DeleteFilled
+      className={styles.icon}
+      tabIndex={0}
+      onClick={handleNoteDeleteByClick}
+      onKeyDown={handleNoteDeleteByKeyDown}
+    />
+  );
 }

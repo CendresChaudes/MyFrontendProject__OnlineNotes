@@ -1,2 +1,2 @@
-export { getObjectKeys } from './getObjectKeys';
-export { getKeyByValue } from './getKeyByValue';
+export { getObjectKeys } from './lib/getObjectKeys';
+export { getKeyByValue } from './lib/getKeyByValue';

@@ -1,2 +1,2 @@
-export { createStatusObjectSelector } from './createStatusObjectSelector';
-export { resetState } from './reset-state';
+export { createStatusObjectSelector } from './lib/createStatusObjectSelector';
+export { resetState } from './actions/reset-state';
