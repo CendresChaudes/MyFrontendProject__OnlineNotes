@@ -1,4 +1,5 @@
 import { Layout } from 'antd';
+import { Helmet } from 'react-helmet-async';
 import { Footer } from '@/widgets/footer';
 import { Header } from '@/widgets/header';
 import { Modal } from '@/widgets/modal';
@@ -9,16 +10,22 @@ const { Content } = Layout;
 
 export function MainPage() {
   return (
-    <Layout className={styles.layout}>
-      <Header />
+    <>
+      <Helmet>
+        <title>Online Notes: главная страница</title>
+      </Helmet>
 
-      <Content className={styles.content}>
-        <h1 className="visually-hidden">{'Сервис "Online Notes".'}</h1>
-        <NotesList />
-        <Modal />
-      </Content>
+      <Layout className={styles.layout}>
+        <Header />
 
-      <Footer />
-    </Layout>
+        <Content className={styles.content}>
+          <h1 className="visually-hidden">{'Сервис "Online Notes".'}</h1>
+          <NotesList />
+          <Modal />
+        </Content>
+
+        <Footer />
+      </Layout>
+    </>
   );
 }
