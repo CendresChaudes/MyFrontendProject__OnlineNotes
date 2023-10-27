@@ -5,9 +5,8 @@ export const getLogoWidth = (breakpoint: Nullable<keyof typeof Breakpoint>): num
     case null:
       return undefined;
     case 'XS':
-      return 40;
+      return 60;
     case 'SM':
-      return 175;
     case 'MD':
     case 'LG':
     case 'XL':

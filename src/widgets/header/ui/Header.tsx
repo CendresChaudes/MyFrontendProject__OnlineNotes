@@ -2,7 +2,6 @@ import { Layout, Row, Col } from 'antd';
 import { Link } from 'react-router-dom';
 import { useBreakpoint } from '@/shared/lib';
 import { Logo } from '@/shared/ui';
-import { getLogoHeight } from '../lib/getLogoHeight';
 import { getLogoWidth } from '../lib/getLogoWidth';
 import styles from './styles.module.scss';
 import { AppRoute } from '@/const';
@@ -22,7 +21,7 @@ export function Header() {
             <Logo
               path={isXsMobileBreakpoint ? shortLogoUrl : fullLogoUrl}
               width={getLogoWidth(currentBreakpoint)}
-              height={getLogoHeight(currentBreakpoint)}
+              height={60}
               alt="Логотип сервиса 'Online Notes'."
             />
           </Link>
