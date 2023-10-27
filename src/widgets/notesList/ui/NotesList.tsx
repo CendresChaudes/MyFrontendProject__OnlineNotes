@@ -19,7 +19,7 @@ export function NotesList() {
   useLoadNotes(dispatch);
 
   if (getNotesStatusObject.isUncompleted) {
-    return <Loader fullPage={false} />;
+    return <Loader />;
   }
 
   return (

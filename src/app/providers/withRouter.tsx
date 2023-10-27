@@ -6,7 +6,7 @@ import { Loader } from '@/shared/ui';
 export const withRouter = (Component: Component) => {
   const DecoratedComponent = () => (
     <BrowserRouter>
-      <Suspense fallback={<Loader text='Loading page...' />}>
+      <Suspense fallback={<Loader fullPage/>}>
         <Component />
       </Suspense>
     </BrowserRouter>

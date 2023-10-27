@@ -1,7 +1,9 @@
 import { DeleteFilled } from '@ant-design/icons';
+import { LoadingOutlined } from '@ant-design/icons';
 import { MouseEvent, KeyboardEvent } from 'react';
-import { deleteNote } from '@/entities/note';
-import { isActivationKey, useAppDispatch } from '@/shared/lib';
+import { deleteNote, deleteNoteStatusObjectSelector } from '@/entities/note';
+import { isActivationKey, useAppDispatch, useAppSelector } from '@/shared/lib';
+import { Loader } from '@/shared/ui';
 import styles from './styles.module.scss';
 
 interface IDeleteNote {
@@ -10,6 +12,7 @@ interface IDeleteNote {
 
 export function DeleteNote({ id }: IDeleteNote) {
   const dispatch = useAppDispatch();
+  const deleteNoteStatus = useAppSelector(deleteNoteStatusObjectSelector);
 
   const handleNoteDeleteByClick = (evt: MouseEvent) => {
     evt.stopPropagation();
@@ -22,6 +25,10 @@ export function DeleteNote({ id }: IDeleteNote) {
       dispatch(deleteNote(id));
     }
   };
+
+  if (deleteNoteStatus.isPending) {
+    return <Loader indicator={<LoadingOutlined className={styles.loader} />} />;
+  }
 
   return (
     <DeleteFilled
