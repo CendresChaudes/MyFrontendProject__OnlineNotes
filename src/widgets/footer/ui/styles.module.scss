@@ -1,7 +1,7 @@
 .footer {
   flex-shrink: 0;
   padding: 15px 15px !important;
-  border-top: 1px solid $color-jade;
+  border-top: 2px solid $color-jade;
   background-color: $color-default-white !important;
 
   @include bp-576 {
