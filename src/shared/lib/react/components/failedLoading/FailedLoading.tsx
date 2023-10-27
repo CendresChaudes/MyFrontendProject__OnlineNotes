@@ -1,6 +1,6 @@
 import { Result, Button, Typography } from 'antd';
 import clsx from 'clsx';
-import styles from './style.module.css';
+import styles from './style.module.scss';
 
 const { Title, Text, Paragraph } = Typography;
 
