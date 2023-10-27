@@ -13,13 +13,14 @@ export default {
   },
   collectCoverageFrom: [
     '**/*.{ts,tsx}',
+    '!**/index.{ts,tsx}',
+    '!**/tests-index.ts',
+    '!**/types.d.ts',
+    '!**/const.ts',
+    '!**/mock/**',
     '!**/tests/**',
     '!**/node_modules/**',
     '!**/vendor/**',
-    '!**/index.{ts,tsx}',
-    '!**/tests-index.ts',
-    '!**/const.ts',
-    '!**/types.d.ts',
     '!**/*.config.ts'
   ],
   setupFilesAfterEnv: ['./src/setupTests.ts'],
