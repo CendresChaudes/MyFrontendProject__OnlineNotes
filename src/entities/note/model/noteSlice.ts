@@ -10,6 +10,7 @@ interface IInitialState {
   mode: Mode;
   notes: INoteData[];
   currentNote: Nullable<INoteData>;
+  deletingNotesId: string[];
   getNotesStatus: APIStatus;
   postNoteStatus: APIStatus;
   deleteNoteStatus: APIStatus;
@@ -20,6 +21,7 @@ const initialState: IInitialState = {
   mode: Mode.Idle,
   notes: [],
   currentNote: null,
+  deletingNotesId: [],
   getNotesStatus: APIStatus.Idle,
   postNoteStatus: APIStatus.Idle,
   deleteNoteStatus: APIStatus.Idle,
@@ -35,7 +37,10 @@ export const noteSlice = createSlice({
     },
     changeCurrentNote(state, action: PayloadAction<Nullable<INoteData>>) {
       state.currentNote = action.payload;
-    }
+    },
+    pushDeletingNoteId(state, action: PayloadAction<string>) {
+      state.deletingNotesId.push(action.payload);
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -75,6 +80,7 @@ export const noteSlice = createSlice({
       .addCase(deleteNote.fulfilled, (state, action: PayloadAction<string>) => {
         state.deleteNoteStatus = APIStatus.Fulfilled;
         state.notes = state.notes.filter((item) => item.id !== action.payload);
+        state.deletingNotesId = state.deletingNotesId.filter((item) => item !== action.payload);
       })
       .addCase(deleteNote.rejected, (state) => {
         state.deleteNoteStatus = APIStatus.Rejected;
@@ -82,4 +88,4 @@ export const noteSlice = createSlice({
   }
 });
 
-export const { changeMode, changeCurrentNote } = noteSlice.actions;
+export const { changeMode, changeCurrentNote, pushDeletingNoteId } = noteSlice.actions;

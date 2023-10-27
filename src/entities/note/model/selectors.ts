@@ -2,6 +2,7 @@ import { createStatusObjectSelector } from '@/shared/lib';
 
 export const modeSelector = (state: State) => state.note.mode;
 export const notesSelector = (state: State) => state.note.notes;
+export const deletingNotesIdSelector = (state: State) => state.note.deletingNotesId;
 export const currentNoteSelector = (state: State) => state.note.currentNote;
 const getNotesStatusSelector = (state: State) => state.note.getNotesStatus;
 const postNoteStatusSelector = (state: State) => state.note.postNoteStatus;

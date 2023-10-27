@@ -1,7 +1,12 @@
 import { EditFilled } from '@ant-design/icons';
 import { MouseEvent, KeyboardEvent } from 'react';
-import { Mode, changeCurrentNote, changeMode } from '@/entities/note';
-import { isActivationKey, useAppDispatch } from '@/shared/lib';
+import {
+  Mode,
+  changeCurrentNote,
+  changeMode,
+  deletingNotesIdSelector,
+} from '@/entities/note';
+import { isActivationKey, useAppDispatch, useAppSelector } from '@/shared/lib';
 import styles from './styles.module.scss';
 
 interface IEditNote {
@@ -10,18 +15,26 @@ interface IEditNote {
 
 export function EditNote({ data }: IEditNote) {
   const dispatch = useAppDispatch();
+  const deletingNotesId = useAppSelector(deletingNotesIdSelector);
 
-  const handleEditNoteModalOpenByClick = (evt: MouseEvent) => {
-    evt.stopPropagation();
+  const isNoteDeleting = deletingNotesId.includes(data.id);
 
+  const handleEditNoteModalOpenBy = () => {
     dispatch(changeCurrentNote(data));
     dispatch(changeMode(Mode.Edit));
   };
 
+  const handleEditNoteModalOpenByClick = (evt: MouseEvent) => {
+    evt.stopPropagation();
+
+    if (!isNoteDeleting) {
+      handleEditNoteModalOpenBy();
+    }
+  };
+
   const handleEditNoteModalOpenByKeyDown = (evt: KeyboardEvent) => {
-    if (isActivationKey(evt)) {
-      dispatch(changeCurrentNote(data));
-      dispatch(changeMode(Mode.Edit));
+    if (isActivationKey(evt) && !isNoteDeleting) {
+      handleEditNoteModalOpenBy();
     }
   };
 

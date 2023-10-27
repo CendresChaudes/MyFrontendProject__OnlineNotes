@@ -1,10 +1,11 @@
 import { Card, Typography } from 'antd';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ru';
-import { ReactNode } from 'react';
-import { useAppDispatch } from '@/shared/lib';
+import { ReactNode, KeyboardEvent } from 'react';
+import { isActivationKey, useAppDispatch, useAppSelector } from '@/shared/lib';
 import { DATE_FORMAT, Mode } from '../const';
 import { changeMode, changeCurrentNote } from '../model/noteSlice';
+import { deletingNotesIdSelector } from '../model/selectors';
 import styles from './styles.module.scss';
 
 const { Title, Paragraph } = Typography;
@@ -17,10 +18,25 @@ interface INote {
 
 export function Note({ data, actionSlot }: INote) {
   const dispatch = useAppDispatch();
+  const deletingNotesId = useAppSelector(deletingNotesIdSelector);
 
-  const handleNoteClick = () => {
+  const isNoteDeleting = deletingNotesId.includes(data.id);
+
+  const handleViewOnlyNoteModalOpenBy = () => {
     dispatch(changeCurrentNote(data));
     dispatch(changeMode(Mode.ViewOnly));
+  };
+
+  const handleViewOnlyNoteModalOpenByClick = () => {
+    if (!isNoteDeleting) {
+      handleViewOnlyNoteModalOpenBy();
+    }
+  };
+
+  const handleViewOnlyNoteModalOpenByKeyDown = (evt: KeyboardEvent) => {
+    if (isActivationKey(evt) && !isNoteDeleting) {
+      handleViewOnlyNoteModalOpenBy();
+    }
   };
 
   return (
@@ -34,7 +50,8 @@ export function Note({ data, actionSlot }: INote) {
       actions={actionSlot}
       hoverable
       tabIndex={0}
-      onClick={handleNoteClick}
+      onClick={handleViewOnlyNoteModalOpenByClick}
+      onKeyDown={handleViewOnlyNoteModalOpenByKeyDown}
     >
       <Paragraph className={styles.text} ellipsis={{ rows: 6 }}>
         {data.text}

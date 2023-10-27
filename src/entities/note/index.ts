@@ -3,10 +3,16 @@ export { postNote } from './api/postNote';
 export { deleteNote } from './api/deleteNote';
 export { updateNote } from './api/updateNote';
 export { Note } from './ui/Note';
-export { noteSlice, changeMode, changeCurrentNote } from './model/noteSlice';
+export {
+  noteSlice,
+  changeMode,
+  changeCurrentNote,
+  pushDeletingNoteId,
+} from './model/noteSlice';
 export {
   modeSelector,
   notesSelector,
+  deletingNotesIdSelector,
   currentNoteSelector,
   getNotesStatusObjectSelector,
   postNoteStatusObjectSelector,

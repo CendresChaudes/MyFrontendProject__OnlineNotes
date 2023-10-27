@@ -1,32 +1,49 @@
-import { DeleteFilled } from '@ant-design/icons';
-import { LoadingOutlined } from '@ant-design/icons';
+import { DeleteFilled, LoadingOutlined } from '@ant-design/icons';
 import { MouseEvent, KeyboardEvent } from 'react';
-import { deleteNote, deleteNoteStatusObjectSelector } from '@/entities/note';
+import {
+  changeCurrentNote,
+  deleteNote,
+  pushDeletingNoteId,
+  deleteNoteStatusObjectSelector,
+  deletingNotesIdSelector,
+} from '@/entities/note';
 import { isActivationKey, useAppDispatch, useAppSelector } from '@/shared/lib';
 import { Loader } from '@/shared/ui';
 import styles from './styles.module.scss';
 
 interface IDeleteNote {
-  id: string;
+  data: INoteData;
 }
 
-export function DeleteNote({ id }: IDeleteNote) {
+export function DeleteNote({ data }: IDeleteNote) {
   const dispatch = useAppDispatch();
+  const deletingNotesId = useAppSelector(deletingNotesIdSelector);
   const deleteNoteStatus = useAppSelector(deleteNoteStatusObjectSelector);
+
+  const isNoteDeleting = deletingNotesId.includes(data.id);
+
+  const handleCurrentNoteChange = () => {
+    dispatch(changeCurrentNote(null));
+  };
+
+  const handleNoteDeleteBy = () => {
+    dispatch(pushDeletingNoteId(data.id));
+    dispatch(changeCurrentNote(data));
+    dispatch(deleteNote([data.id, handleCurrentNoteChange]));
+  };
 
   const handleNoteDeleteByClick = (evt: MouseEvent) => {
     evt.stopPropagation();
-
-    dispatch(deleteNote(id));
+    handleNoteDeleteBy();
   };
 
   const handleNoteDeleteByKeyDown = (evt: KeyboardEvent) => {
     if (isActivationKey(evt)) {
-      dispatch(deleteNote(id));
+      handleNoteDeleteBy();
     }
   };
 
-  if (deleteNoteStatus.isPending) {
+  if (deleteNoteStatus.isPending && isNoteDeleting) {
     return <Loader indicator={<LoadingOutlined className={styles.loader} />} />;
   }
 
