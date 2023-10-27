@@ -3,10 +3,10 @@ import { AppCrashPage } from './AppCrashPage';
 
 describe('React component: AppCrashPage', () => {
   test('Should render correctly', () => {
-    const renderedText = /App Crash/i;
+    const renderedText = /фатальная ошибка/i;
 
     render(<AppCrashPage />);
 
-    expect(screen.getByText(renderedText)).toBeInTheDocument();
+    expect(screen.getAllByText(renderedText).length).not.toBe(0);
   });
 });

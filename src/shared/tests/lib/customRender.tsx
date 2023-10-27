@@ -1,16 +1,17 @@
 import { render, RenderOptions } from '@testing-library/react';
 import { ReactElement } from 'react';
+import { HelmetProvider } from 'react-helmet-async';
 import { Provider as ReduxProvider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 // eslint-disable-next-line @conarti/feature-sliced/layers-slices
 import { appStore } from '@/app/store/appStore';
 
 const AllTheProviders = ({ children }: { children: React.ReactNode }) => (
-  <ReduxProvider store={appStore}>
-    <BrowserRouter>
-      {children}
-    </BrowserRouter>
-  </ReduxProvider>
+  <HelmetProvider>
+    <ReduxProvider store={appStore}>
+      <BrowserRouter>{children}</BrowserRouter>
+    </ReduxProvider>
+  </HelmetProvider>
 );
 
 const customRender = (

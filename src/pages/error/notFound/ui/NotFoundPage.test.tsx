@@ -34,6 +34,6 @@ describe('React component: AppCrashPage', () => {
 
     render(<NotFoundPage />);
 
-    expect(screen.getByText(renderedText)).toBeInTheDocument();
+    expect(screen.getAllByText(renderedText).length).not.toBe(0);
   });
 });
