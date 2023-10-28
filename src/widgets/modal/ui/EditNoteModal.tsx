@@ -14,6 +14,7 @@ import {
   useAppDispatch,
   useAppSelector,
 } from '@/shared/lib';
+import { validationRules } from '../const';
 import styles from './styles.module.scss';
 
 const { Title } = Typography;
@@ -66,8 +67,8 @@ export function EditNoteModal() {
       updateNote([
         {
           id: currentNote.id,
-          title,
-          text,
+          title: title.trim(),
+          text: text.trim(),
           date: Date.now(),
         },
         handleModeReset,
@@ -100,7 +101,7 @@ export function EditNoteModal() {
           className={styles.label}
           label="Заголовок"
           name="title"
-          rules={[{ required: true, message: 'Обязательное поле' }]}
+          rules={validationRules}
         >
           <Input
             className={styles.input}
@@ -114,7 +115,7 @@ export function EditNoteModal() {
           className={styles.label}
           label="Текст"
           name="text"
-          rules={[{ required: true, message: 'Обязательное поле' }]}
+          rules={validationRules}
         >
           <TextArea
             className={styles.textarea}
