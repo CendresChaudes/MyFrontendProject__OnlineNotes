@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { collection, getDocs, runTransaction } from 'firebase/firestore';
+import { collection, getDocs, runTransaction, query, orderBy } from 'firebase/firestore';
 import { changeNotification } from '@/shared/lib';
 import { APIRoute } from '@/const';
 
@@ -15,7 +15,8 @@ export const getNotes = createAsyncThunk<
       let data: unknown;
 
       await runTransaction(api, async () => {
-        const response = await getDocs(docsRef);
+        const notesOrderedByDateQuery = query(docsRef, orderBy('date', 'desc'));
+        const response = await getDocs(notesOrderedByDateQuery);
         data = response.docs.map((item) => item.data() as INoteData);
       });
 

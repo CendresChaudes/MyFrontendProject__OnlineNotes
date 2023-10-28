@@ -69,7 +69,8 @@ export const noteSlice = createSlice({
       })
       .addCase(updateNote.fulfilled, (state, action: PayloadAction<INoteData>) => {
         state.updateNoteStatus = APIStatus.Fulfilled;
-        state.notes = state.notes.map((item) => (item.id === action.payload.id) ? action.payload : item);
+        state.notes = state.notes.filter((item) => item.id !== action.payload.id);
+        state.notes.unshift(action.payload);
       })
       .addCase(updateNote.rejected, (state) => {
         state.updateNoteStatus = APIStatus.Rejected;
