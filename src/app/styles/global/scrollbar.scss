@@ -1,0 +1,22 @@
+* {
+  /* плашка-бегунок, фон */
+  scrollbar-color: $color-wild-strawberry $color-gainsboro;
+}
+
+*::-webkit-scrollbar {
+  width: $sb-width; /* в основном для вертикальных полос прокрутки */
+  height: $sb-height; /* в основном для горизонтальных полос прокрутки */
+}
+
+*::-webkit-scrollbar-thumb {
+  /* плашка-бегунок */
+  border-radius: 7px;
+  border: 4px solid transparent;
+  background-clip: content-box;
+  background-color: $color-wild-strawberry;
+}
+
+*::-webkit-scrollbar-track {
+  /* фон */
+  background-color: $color-gainsboro;
+}
