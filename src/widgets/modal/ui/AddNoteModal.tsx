@@ -13,6 +13,7 @@ import {
   isMobile,
   useAppDispatch,
   useAppSelector,
+  focusOnInput,
 } from '@/shared/lib';
 import { validationRules } from '../const';
 import styles from './styles.module.scss';
@@ -28,8 +29,7 @@ export function AddNoteModal() {
   const postNoteStatus = useAppSelector(postNoteStatusObjectSelector);
   const [form] = Form.useForm();
 
-  const handleModalOpen = (open: boolean) =>
-    open && (inputRef.current as unknown as HTMLInputElement)?.focus();
+  const handleModalOpen = (open: boolean) => open && focusOnInput(inputRef);
 
   const handleTitleChange = (evt: ChangeEvent<HTMLInputElement>) => {
     form.setFieldsValue({ title: evt.target.value });
