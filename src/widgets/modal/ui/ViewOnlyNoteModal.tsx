@@ -7,6 +7,7 @@ import {
   changeCurrentNote,
   changeMode,
   currentNoteSelector,
+  deleteNote,
 } from '@/entities/note';
 import {
   isMobile,
@@ -31,6 +32,16 @@ export function ViewOnlyNoteModal() {
 
   const handleChangeToEditMode = () => {
     dispatch(changeMode(Mode.Edit));
+  };
+
+  const handleChangeToIdleMode = () => {
+    dispatch(changeMode(Mode.Idle));
+  };
+
+  const handleNoteDelete = () => {
+    if (currentNote) {
+      dispatch(deleteNote([currentNote.id, handleChangeToIdleMode]));
+    }
   };
 
   const buttonSize = isMobile(currentBreakpoint) ? 'large' : 'middle';
@@ -79,9 +90,9 @@ export function ViewOnlyNoteModal() {
           htmlType="button"
           type="default"
           size={buttonSize}
-          onClick={handleModalClose}
+          onClick={handleNoteDelete}
         >
-          Закрыть
+          Удалить
         </Button>
       </Flex>
     </Modal>
