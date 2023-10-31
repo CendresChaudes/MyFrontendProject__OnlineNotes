@@ -30,17 +30,17 @@ export function ViewOnlyNoteModal() {
     dispatch(changeCurrentNote(null));
   };
 
-  const handleChangeToEditMode = () => {
+  const handleToEditModeChange = () => {
     dispatch(changeMode(Mode.Edit));
   };
 
-  const handleChangeToIdleMode = () => {
+  const handleToIdleModeChange = () => {
     dispatch(changeMode(Mode.Idle));
   };
 
   const handleNoteDelete = () => {
     if (currentNote) {
-      dispatch(deleteNote([currentNote.id, handleChangeToIdleMode]));
+      dispatch(deleteNote([currentNote.id, handleToIdleModeChange]));
     }
   };
 
@@ -81,7 +81,7 @@ export function ViewOnlyNoteModal() {
           htmlType="button"
           type="primary"
           size={buttonSize}
-          onClick={handleChangeToEditMode}
+          onClick={handleToEditModeChange}
         >
           Редактировать
         </Button>

@@ -43,14 +43,14 @@ export function AddNoteModal() {
     form.resetFields();
   };
 
-  const handleModeReset = () => {
+  const handleToIdleModeChange = () => {
     dispatch(changeMode(Mode.Idle));
   };
 
   const handleModalClose = () => {
     if (!postNoteStatus.isPending) {
       handleFormReset();
-      handleModeReset();
+      handleToIdleModeChange();
     }
   };
 
@@ -66,7 +66,7 @@ export function AddNoteModal() {
           text: text.trim(),
           date: Date.now(),
         },
-        handleModeReset,
+        handleToIdleModeChange,
       ])
     );
   };

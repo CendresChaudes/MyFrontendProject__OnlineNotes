@@ -48,14 +48,14 @@ export function EditNoteModal() {
     form.resetFields();
   };
 
-  const handleModeReset = () => {
+  const handleToIdleModeChange = () => {
     dispatch(changeMode(Mode.Idle));
   };
 
   const handleModalClose = () => {
     if (!updateNoteStatus.isPending) {
       handleFormReset();
-      handleModeReset();
+      handleToIdleModeChange();
     }
   };
 
@@ -71,7 +71,7 @@ export function EditNoteModal() {
           text: text.trim(),
           date: Date.now(),
         },
-        handleModeReset,
+        handleToIdleModeChange,
       ])
     );
   };
