@@ -5,11 +5,11 @@ import { APIRoute } from '@/const';
 
 export const updateNote = createAsyncThunk<
   INoteData,
-  [INoteData, () => void],
+  { data: INoteData; callback?: () => void },
   FirebaseThunkAPI
     >(
     'api/updateNote',
-    async ([data, callback], { dispatch, extra: api }) => {
+    async ({ data, callback }, { dispatch, extra: api }) => {
       try {
         const docRef = doc(api, APIRoute.Notes, data.id);
 

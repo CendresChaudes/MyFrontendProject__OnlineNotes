@@ -64,15 +64,15 @@ export function EditNoteModal() {
     text,
   }: Pick<INoteData, 'title' | 'text'>) => {
     dispatch(
-      updateNote([
-        {
+      updateNote({
+        data: {
           id: currentNote.id,
           title: title.trim(),
           text: text.trim(),
           date: Date.now(),
         },
-        handleToIdleModeChange,
-      ])
+        callback: handleToIdleModeChange,
+      })
     );
   };
 

@@ -59,15 +59,15 @@ export function AddNoteModal() {
     text,
   }: Pick<INoteData, 'title' | 'text'>) => {
     dispatch(
-      postNote([
-        {
+      postNote({
+        data: {
           id: nanoid(),
           title: title.trim(),
           text: text.trim(),
           date: Date.now(),
         },
-        handleToIdleModeChange,
-      ])
+        callback: handleToIdleModeChange,
+      })
     );
   };
 
