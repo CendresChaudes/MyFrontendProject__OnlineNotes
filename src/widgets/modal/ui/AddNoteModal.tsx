@@ -139,22 +139,13 @@ export function AddNoteModal() {
 
           <Button
             htmlType="button"
-            type="default"
+            type="link"
+            danger
             size={buttonSize}
             disabled={postNoteStatus.isPending}
             onClick={handleFormReset}
           >
             Сбросить
-          </Button>
-
-          <Button
-            htmlType="button"
-            danger
-            size={buttonSize}
-            disabled={postNoteStatus.isPending}
-            onClick={handleModalClose}
-          >
-            Отменить
           </Button>
         </Flex>
       </Form>
