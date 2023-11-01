@@ -1,0 +1,28 @@
+.title {
+  font-size: 24px !important;
+  margin-top: 0;
+  text-align: center;
+
+  @include bp-768 {
+    font-size: 26px !important;
+  }
+
+  @include bp-1600 {
+    font-size: 28px !important;
+  }
+}
+
+.form {
+  width: 35vw;
+  margin: auto;
+  padding: 30px;
+
+  background-color: $color-default-white;
+  border-radius: 15px;
+}
+
+.sign-up-wrapper {
+  margin-top: -10px;
+  margin-bottom: 15px;
+}
+
