@@ -7,7 +7,7 @@ import styles from './styles.module.scss';
 
 const { Content } = Layout;
 
-export function LoginPage() {
+export function AuthPage() {
   const [isSignUp, setIsSignUp] = useState(false);
 
   const handleIsSignUpChange = () => {
