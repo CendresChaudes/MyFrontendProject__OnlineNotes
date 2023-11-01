@@ -2,12 +2,14 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { APIStatus } from '@/shared/api';
 import { postUser } from '../api/postUser';
 import { signIn } from '../api/signIn';
+import { signOut } from '../api/signOut';
 
 interface IInitialState {
   currentUser: Nullable<IUserData['email']>;
   getCurrentUserStatus: APIStatus;
   postUserStatus: APIStatus;
   signInStatus: APIStatus;
+  signOutStatus: APIStatus;
 }
 
 const initialState: IInitialState = {
@@ -15,6 +17,7 @@ const initialState: IInitialState = {
   getCurrentUserStatus: APIStatus.Idle,
   postUserStatus: APIStatus.Idle,
   signInStatus: APIStatus.Idle,
+  signOutStatus: APIStatus.Idle,
 };
 
 export const userSlice = createSlice({
@@ -48,6 +51,15 @@ export const userSlice = createSlice({
       })
       .addCase(signIn.rejected, (state) => {
         state.signInStatus = APIStatus.Rejected;
+      })
+      .addCase(signOut.pending, (state) => {
+        state.signOutStatus = APIStatus.Pending;
+      })
+      .addCase(signOut.fulfilled, (state) => {
+        state.signOutStatus = APIStatus.Fulfilled;
+      })
+      .addCase(signOut.rejected, (state) => {
+        state.signOutStatus = APIStatus.Rejected;
       });
   },
 });

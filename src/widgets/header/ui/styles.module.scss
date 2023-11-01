@@ -26,8 +26,16 @@
   }
 }
 
-.col {
-  text-align: center;
+.logo {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+
+.sign-out {
+  display: flex;
+  justify-content: end;
+  align-self: center;
 }
 
 .link {
@@ -39,5 +47,44 @@
 
   @include active {
     opacity: 0.5;
+  }
+}
+
+.text {
+  font-size: 20px;
+  color: $color-default-white !important;
+
+  @include bp-768 {
+    font-size: 22px !important;
+  }
+
+  @include bp-1600 {
+    font-size: 24px !important;
+  }
+}
+
+.icon {
+  font-size: 35px;
+  color: $color-default-white !important;
+
+  @include bp-768 {
+    font-size: 30px !important;
+  }
+
+  @include bp-1600 {
+    font-size: 32px !important;
+  }
+}
+
+.loader {
+  font-size: 35px !important;
+  color: $color-default-white !important;
+
+  @include bp-768 {
+    font-size: 30px !important;
+  }
+
+  @include bp-1600 {
+    font-size: 32px !important;
   }
 }

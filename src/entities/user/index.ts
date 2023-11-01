@@ -1,5 +1,6 @@
 export { postUser } from './api/postUser';
 export { signIn } from './api/signIn';
+export { signOut } from './api/signOut';
 export {
   userSlice,
   setCurrentUser,
@@ -10,4 +11,5 @@ export {
   getCurrentUserStatusObjectSelector,
   postUserStatusObjectSelector,
   signInStatusObjectSelector,
+  signOutStatusObjectSelector
 } from './model/selectors';
