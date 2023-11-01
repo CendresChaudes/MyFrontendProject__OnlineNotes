@@ -1,32 +1,32 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { getAuthRef } from '@/shared/api';
-import { changeNotification } from '@/shared/lib';
+import { changeNotification, redirectToRoute } from '@/shared/lib';
+import { AppRoute } from '@/const';
 
-export const signIn = createAsyncThunk<
-  IUserData,
-  IUserData,
-  FirebaseThunkAPI
-    >(
-      'api/signIn',
-      async (userData, { dispatch }) => {
-        try {
-          await signInWithEmailAndPassword(
-            getAuthRef(),
-            userData.email,
-            userData.password
-          );
+export const signIn = createAsyncThunk<IUserData, IUserData, FirebaseThunkAPI>(
+  'api/signIn',
+  async (userData, { dispatch }) => {
+    try {
+      await signInWithEmailAndPassword(
+        getAuthRef(),
+        userData.email,
+        userData.password
+      );
 
-          return userData;
-        } catch (err) {
-          dispatch(
-            changeNotification({
-              type: 'error',
-              title: 'Ошибка!',
-              text: 'Не удалось авторизоваться',
-            })
-          );
+      dispatch(redirectToRoute(AppRoute.Root));
 
-          throw new Error();
-        }
-      });
+      return userData;
+    } catch (err) {
+      dispatch(
+        changeNotification({
+          type: 'error',
+          title: 'Ошибка!',
+          text: 'Не удалось авторизоваться',
+        })
+      );
+
+      throw new Error();
+    }
+  }
+);

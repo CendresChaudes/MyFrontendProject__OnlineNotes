@@ -6,4 +6,5 @@ export { isTablet } from './lib/isTablet';
 export { focusOnInput } from './lib/focusOnInput';
 export { Breakpoint } from './hooks/useBreakpoint/const';
 export { FailedLoading } from './components/failedLoading/FailedLoading';
-export { ScrollToTop } from './components/scrollToTop/ScrollToTop';
+export { ScrollToTop } from './components/ScrollToTop';
+export { HistoryRouter } from './components/HistoryRouter';

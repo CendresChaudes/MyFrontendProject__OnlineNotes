@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { getApiRef } from '@/shared/api';
+import { redirect } from '../middlewares/redirect';
 import { rootReducer } from './rootReducer';
 
 const api = getApiRef();
@@ -10,7 +11,7 @@ export const appStore = configureStore({
     thunk: {
       extraArgument: api
     }
-  })
+  }).concat(redirect)
 });
 
 export type State = ReturnType<typeof appStore.getState>;

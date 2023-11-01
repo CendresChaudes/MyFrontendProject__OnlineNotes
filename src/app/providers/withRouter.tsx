@@ -1,17 +1,17 @@
-
 import { Suspense } from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { HistoryRouter } from '@/shared/lib';
 import { Loader } from '@/shared/ui';
+import { browserHistory } from '../browserHistory';
 
 export const withRouter = (Component: Component) => {
   const DecoratedComponent = () => (
-    <BrowserRouter>
-      <Suspense fallback={<Loader fullPage/>}>
+    <HistoryRouter history={browserHistory}>
+      <Suspense fallback={<Loader fullPage />}>
         <Component />
       </Suspense>
-    </BrowserRouter>
+    </HistoryRouter>
   );
 
-  DecoratedComponent.displayName = 'Decorated component with Browser Router';
+  DecoratedComponent.displayName = 'Decorated component with History Router';
   return DecoratedComponent;
 };
