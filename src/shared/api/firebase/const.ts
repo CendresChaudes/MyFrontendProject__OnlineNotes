@@ -7,3 +7,7 @@ export const firebaseConfig = {
   appId: process.env.VITE_APP_ID,
   measurementId: process.env.VITE_MEASUREMENT_ID
 };
+
+export const FirebaseErrorCode = {
+  EmailExists: 'auth/email-already-in-use',
+};

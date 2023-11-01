@@ -3,4 +3,6 @@ import { getFirestore } from 'firebase/firestore';
 import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from '../const';
 
-export const createApi = () => getFirestore(initializeApp(firebaseConfig));
+const app = initializeApp(firebaseConfig);
+
+export const getApiRef = () => getFirestore(app);

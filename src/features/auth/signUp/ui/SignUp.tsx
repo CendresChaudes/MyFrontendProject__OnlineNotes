@@ -1,7 +1,13 @@
 import { Form, Input, Button, InputRef, Flex, Typography } from 'antd';
 import { Rule } from 'antd/es/form';
 import { ChangeEvent, Ref, useRef } from 'react';
-import { useBreakpoint, isMobile } from '@/shared/lib';
+import { postUser, postUserStatusObjectSelector } from '@/entities/user';
+import {
+  useBreakpoint,
+  isMobile,
+  useAppDispatch,
+  useAppSelector,
+} from '@/shared/lib';
 import { ValidationRule } from '../const';
 import styles from './styles.module.scss';
 
@@ -14,7 +20,9 @@ interface ISignUp {
 }
 
 export function SignUp({ handleIsSignUpChange }: ISignUp) {
+  const dispatch = useAppDispatch();
   const inputRef = useRef();
+  const postUserStatus = useAppSelector(postUserStatusObjectSelector);
   const currentBreakpoint = useBreakpoint();
   const [form] = Form.useForm();
 
@@ -34,9 +42,13 @@ export function SignUp({ handleIsSignUpChange }: ISignUp) {
     form.resetFields();
   };
 
-  const handleFormSubmit = ({ email, password }) => {
-    console.log(email, password);
-    handleIsSignUpChange();
+  const handleFormSubmit = ({ email, password }: IUserData) => {
+    dispatch(
+      postUser({
+        userData: { email, password },
+        callback: handleIsSignUpChange,
+      })
+    );
   };
 
   const buttonSize = isMobile(currentBreakpoint) ? 'large' : 'middle';
@@ -63,7 +75,7 @@ export function SignUp({ handleIsSignUpChange }: ISignUp) {
           className={styles.input}
           allowClear
           ref={inputRef as unknown as Ref<InputRef>}
-          disabled={false}
+          disabled={postUserStatus.isPending}
           onChange={handleEmailChange}
         />
       </Item>
@@ -77,7 +89,7 @@ export function SignUp({ handleIsSignUpChange }: ISignUp) {
         <Password
           className={styles.input}
           allowClear
-          disabled={false}
+          disabled={postUserStatus.isPending}
           onChange={handlePasswordChange}
         />
       </Item>
@@ -92,7 +104,7 @@ export function SignUp({ handleIsSignUpChange }: ISignUp) {
         <Password
           className={styles.input}
           allowClear
-          disabled={false}
+          disabled={postUserStatus.isPending}
           onChange={handlePasswordConfirmChange}
         />
       </Item>
@@ -107,7 +119,7 @@ export function SignUp({ handleIsSignUpChange }: ISignUp) {
           htmlType="submit"
           type="primary"
           size={buttonSize}
-          loading={false}
+          loading={postUserStatus.isPending}
         >
           Создать
         </Button>
@@ -117,7 +129,7 @@ export function SignUp({ handleIsSignUpChange }: ISignUp) {
           type="link"
           danger
           size={buttonSize}
-          disabled={false}
+          disabled={postUserStatus.isPending}
           onClick={handleFormReset}
         >
           Сбросить

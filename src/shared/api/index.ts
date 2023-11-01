@@ -1,2 +1,4 @@
 export { APIStatus } from './const';
-export { createApi } from './firebase/lib/createApi';
+export { getApiRef } from './firebase/lib/getApiRef';
+export { getAuthRef } from './firebase/lib/getAuthRef';
+export { FirebaseErrorCode } from './firebase/const';
