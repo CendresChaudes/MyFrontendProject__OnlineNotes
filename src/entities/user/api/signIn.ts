@@ -4,7 +4,7 @@ import { getAuthRef } from '@/shared/api';
 import { changeNotification, redirectToRoute } from '@/shared/lib';
 import { AppRoute } from '@/const';
 
-export const signIn = createAsyncThunk<IUserData, IUserData, FirebaseThunkAPI>(
+export const signIn = createAsyncThunk<IUserData['email'], IUserData, FirebaseThunkAPI>(
   'api/signIn',
   async (userData, { dispatch }) => {
     try {
@@ -16,8 +16,8 @@ export const signIn = createAsyncThunk<IUserData, IUserData, FirebaseThunkAPI>(
 
       dispatch(redirectToRoute(AppRoute.Root));
 
-      return userData;
-    } catch (err) {
+      return userData.email;
+    } catch {
       dispatch(
         changeNotification({
           type: 'error',

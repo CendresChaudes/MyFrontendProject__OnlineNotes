@@ -45,8 +45,8 @@ export function SignUp({ handleIsSignUpChange }: ISignUp) {
   const handleFormSubmit = ({ email, password }: IUserData) => {
     dispatch(
       postUser({
-        userData: { email: email.trim(), password: password.trim() },
-        callback: handleIsSignUpChange,
+        email: email.trim(),
+        password: password.trim(),
       })
     );
   };
@@ -133,6 +133,16 @@ export function SignUp({ handleIsSignUpChange }: ISignUp) {
           onClick={handleFormReset}
         >
           Сбросить
+        </Button>
+
+        <Button
+          htmlType="button"
+          type="default"
+          size={buttonSize}
+          disabled={postUserStatus.isPending}
+          onClick={handleIsSignUpChange}
+        >
+          Назад
         </Button>
       </Flex>
     </Form>
