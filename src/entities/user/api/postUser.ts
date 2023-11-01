@@ -6,7 +6,7 @@ import { FirebaseErrorCode, getAuthRef } from '@/shared/api';
 import { changeNotification } from '@/shared/lib';
 
 export const postUser = createAsyncThunk<
-  IUserData,
+  void,
   { userData: IUserData; callback?: () => void },
   FirebaseThunkAPI
     >(
@@ -22,8 +22,6 @@ export const postUser = createAsyncThunk<
         if (callback) {
           callback();
         }
-
-        return userData;
       } catch (err) {
         let notificationText = 'Не удалось зарегистрировать аккаунт';
 

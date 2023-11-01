@@ -1,7 +1,13 @@
 import { Form, Input, Button, InputRef, Flex, Typography } from 'antd';
 import { Rule } from 'antd/es/form';
 import { ChangeEvent, Ref, useRef } from 'react';
-import { useBreakpoint, isMobile } from '@/shared/lib';
+import { signIn, signInStatusObjectSelector } from '@/entities/user';
+import {
+  useBreakpoint,
+  isMobile,
+  useAppDispatch,
+  useAppSelector,
+} from '@/shared/lib';
 import { ValidationRule } from '../const';
 import styles from './styles.module.scss';
 
@@ -14,7 +20,9 @@ interface ISignIn {
 }
 
 export function SignIn({ handleIsSignUpChange }: ISignIn) {
+  const dispatch = useAppDispatch();
   const inputRef = useRef();
+  const signInStatus = useAppSelector(signInStatusObjectSelector);
   const currentBreakpoint = useBreakpoint();
   const [form] = Form.useForm();
 
@@ -30,8 +38,8 @@ export function SignIn({ handleIsSignUpChange }: ISignIn) {
     form.resetFields();
   };
 
-  const handleFormSubmit = ({ email, password }) => {
-    console.log(email, password);
+  const handleFormSubmit = ({ email, password }: IUserData) => {
+    dispatch(signIn({ email: email.trim(), password: password.trim() }));
   };
 
   const buttonSize = isMobile(currentBreakpoint) ? 'large' : 'middle';
@@ -58,7 +66,7 @@ export function SignIn({ handleIsSignUpChange }: ISignIn) {
           className={styles.input}
           allowClear
           ref={inputRef as unknown as Ref<InputRef>}
-          disabled={false}
+          disabled={signInStatus.isPending}
           onChange={handleEmailChange}
         />
       </Item>
@@ -72,14 +80,16 @@ export function SignIn({ handleIsSignUpChange }: ISignIn) {
         <Password
           className={styles.input}
           allowClear
-          disabled={false}
+          disabled={signInStatus.isPending}
           onChange={handlePasswordChange}
         />
       </Item>
 
       <div className={styles['sign-up-wrapper']}>
         <Text>Нет аккаунта?</Text>{' '}
-        <Link onClick={handleIsSignUpChange}>Зарегистрировать</Link>
+        <Link disabled={signInStatus.isPending} onClick={handleIsSignUpChange}>
+          Зарегистрировать
+        </Link>
       </div>
 
       <Flex
@@ -92,7 +102,7 @@ export function SignIn({ handleIsSignUpChange }: ISignIn) {
           htmlType="submit"
           type="primary"
           size={buttonSize}
-          loading={false}
+          loading={signInStatus.isPending}
         >
           Войти
         </Button>
@@ -102,7 +112,7 @@ export function SignIn({ handleIsSignUpChange }: ISignIn) {
           type="link"
           danger
           size={buttonSize}
-          disabled={false}
+          disabled={signInStatus.isPending}
           onClick={handleFormReset}
         >
           Сбросить

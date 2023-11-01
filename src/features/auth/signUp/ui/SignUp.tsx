@@ -45,7 +45,7 @@ export function SignUp({ handleIsSignUpChange }: ISignUp) {
   const handleFormSubmit = ({ email, password }: IUserData) => {
     dispatch(
       postUser({
-        userData: { email, password },
+        userData: { email: email.trim(), password: password.trim() },
         callback: handleIsSignUpChange,
       })
     );
