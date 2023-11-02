@@ -4,7 +4,7 @@ import { deleteNote } from '../api/deleteNote';
 import { getNotes } from '../api/getNotes';
 import { postNote } from '../api/postNote';
 import { updateNote } from '../api/updateNote';
-import { Mode } from '../const';
+import { Mode } from '@/const';
 
 interface IInitialState {
   mode: Mode;

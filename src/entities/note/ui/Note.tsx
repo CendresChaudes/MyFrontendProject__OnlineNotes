@@ -3,10 +3,11 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/ru';
 import { ReactNode, KeyboardEvent } from 'react';
 import { isActivationKey, useAppDispatch, useAppSelector } from '@/shared/lib';
-import { DATE_FORMAT, Mode } from '../const';
+import { DATE_FORMAT } from '../const';
 import { changeMode, changeCurrentNote } from '../model/noteSlice';
 import { deletingNotesIdSelector } from '../model/selectors';
 import styles from './styles.module.scss';
+import { Mode } from '@/const';
 
 const { Title, Paragraph } = Typography;
 const { Meta } = Card;

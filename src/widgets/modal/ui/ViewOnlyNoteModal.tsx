@@ -3,7 +3,6 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/ru';
 import {
   DATE_FORMAT,
-  Mode,
   changeCurrentNote,
   changeMode,
   currentNoteSelector,
@@ -16,6 +15,7 @@ import {
   useBreakpoint,
 } from '@/shared/lib';
 import styles from './styles.module.scss';
+import { Mode } from '@/const';
 
 const { Title, Paragraph } = Typography;
 const { Meta } = Card;

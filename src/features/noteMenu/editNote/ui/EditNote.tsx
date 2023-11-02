@@ -1,13 +1,13 @@
 import { EditFilled } from '@ant-design/icons';
 import { MouseEvent, KeyboardEvent } from 'react';
 import {
-  Mode,
   changeCurrentNote,
   changeMode,
   deletingNotesIdSelector,
 } from '@/entities/note';
 import { isActivationKey, useAppDispatch, useAppSelector } from '@/shared/lib';
 import styles from './styles.module.scss';
+import { Mode } from '@/const';
 
 interface IEditNote {
   data: INoteData;

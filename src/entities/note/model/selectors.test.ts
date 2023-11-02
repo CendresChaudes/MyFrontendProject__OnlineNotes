@@ -1,5 +1,4 @@
 import { APIStatus } from '@/shared/api/const';
-import { Mode } from '../const';
 import { createMockNotes, createMockCurrentNote } from '../tests';
 import {
   modeSelector,
@@ -11,6 +10,7 @@ import {
   deleteNoteStatusSelector,
   updateNoteStatusSelector
 } from './selectors';
+import { Mode } from '@/const';
 
 jest.mock('@/shared/lib', () => ({
   createStatusObjectSelector: () => ({}),

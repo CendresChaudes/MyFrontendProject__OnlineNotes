@@ -7,3 +7,10 @@ export enum AppRoute {
 export enum APIRoute {
   Notes = 'notes',
 }
+
+export enum Mode {
+  Idle = 'idle',
+  Add = 'add',
+  ViewOnly = 'view-only',
+  Edit = 'edit',
+}

@@ -1,7 +1,6 @@
-// eslint-disable-next-line @conarti/feature-sliced/layers-slices
-import { Mode } from '@/entities/note/const';
 import { APIStatus } from '../../../api/const';
 import { notificationSelector } from './selectors';
+import { Mode } from '@/const';
 
 describe('Redux selectors: "notification" domain', () => {
   const mockNotification = {

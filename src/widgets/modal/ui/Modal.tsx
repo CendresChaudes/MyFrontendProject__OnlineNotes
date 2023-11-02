@@ -1,8 +1,9 @@
-import { modeSelector, Mode } from '@/entities/note';
+import { modeSelector } from '@/entities/note';
 import { useAppSelector } from '@/shared/lib';
 import { AddNoteModal } from './AddNoteModal';
 import { EditNoteModal } from './EditNoteModal';
 import { ViewOnlyNoteModal } from './ViewOnlyNoteModal';
+import { Mode } from '@/const';
 
 export function Modal() {
   const mode = useAppSelector(modeSelector);

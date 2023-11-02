@@ -19,4 +19,4 @@ export {
   deleteNoteStatusObjectSelector,
   updateNoteStatusObjectSelector,
 } from './model/selectors';
-export { Mode, DATE_FORMAT } from './const';
+export { DATE_FORMAT } from './const';

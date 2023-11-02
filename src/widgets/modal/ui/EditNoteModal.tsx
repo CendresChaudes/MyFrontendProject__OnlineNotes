@@ -2,7 +2,6 @@ import { Modal, Form, Input, Typography, Button, Flex } from 'antd';
 import clsx from 'clsx';
 import { ChangeEvent } from 'react';
 import {
-  Mode,
   changeMode,
   currentNoteSelector,
   updateNote,
@@ -16,6 +15,7 @@ import {
 } from '@/shared/lib';
 import { validationRules } from '../const';
 import styles from './styles.module.scss';
+import { Mode } from '@/const';
 
 const { Title } = Typography;
 const { Item } = Form;
