@@ -16,10 +16,10 @@ const { Item } = Form;
 const { Password } = Input;
 
 interface ISignIn {
-  handleIsSignUpChange: () => void;
+  onIsSignUpChange: () => void;
 }
 
-export function SignIn({ handleIsSignUpChange }: ISignIn) {
+export function SignIn({ onIsSignUpChange }: ISignIn) {
   const dispatch = useAppDispatch();
   const inputRef = useRef();
   const signInStatus = useAppSelector(signInStatusObjectSelector);
@@ -87,7 +87,7 @@ export function SignIn({ handleIsSignUpChange }: ISignIn) {
 
       <div className={styles['sign-up-wrapper']}>
         <Text>Нет аккаунта?</Text>{' '}
-        <Link disabled={signInStatus.isPending} onClick={handleIsSignUpChange}>
+        <Link disabled={signInStatus.isPending} onClick={onIsSignUpChange}>
           Зарегистрировать
         </Link>
       </div>

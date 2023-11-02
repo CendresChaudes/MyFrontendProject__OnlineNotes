@@ -16,10 +16,10 @@ const { Item } = Form;
 const { Password } = Input;
 
 interface ISignUp {
-  handleIsSignUpChange: () => void;
+  onIsSignUpChange: () => void;
 }
 
-export function SignUp({ handleIsSignUpChange }: ISignUp) {
+export function SignUp({ onIsSignUpChange }: ISignUp) {
   const dispatch = useAppDispatch();
   const inputRef = useRef();
   const postUserStatus = useAppSelector(postUserStatusObjectSelector);
@@ -129,7 +129,7 @@ export function SignUp({ handleIsSignUpChange }: ISignUp) {
           type="link"
           size={buttonSize}
           disabled={postUserStatus.isPending}
-          onClick={handleIsSignUpChange}
+          onClick={onIsSignUpChange}
         >
           Назад
         </Button>

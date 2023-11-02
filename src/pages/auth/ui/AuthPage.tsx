@@ -25,9 +25,9 @@ export function AuthPage() {
           <h1 className="visually-hidden">{'Сервис "Online Notes".'}</h1>
 
           {isSignUp ? (
-            <SignUp handleIsSignUpChange={handleIsSignUpChange} />
+            <SignUp onIsSignUpChange={handleIsSignUpChange} />
           ) : (
-            <SignIn handleIsSignUpChange={handleIsSignUpChange} />
+            <SignIn onIsSignUpChange={handleIsSignUpChange} />
           )}
         </Content>
       </Layout>
