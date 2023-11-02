@@ -11,6 +11,13 @@ describe('Redux selectors: "notification" domain', () => {
   } as INotificationData;
 
   const mockStore: State = {
+    user: {
+      currentUser: null,
+      getCurrentUserStatus: APIStatus.Idle,
+      postUserStatus: APIStatus.Idle,
+      signInStatus: APIStatus.Idle,
+      signOutStatus: APIStatus.Idle,
+    },
     note: {
       mode: Mode.Idle,
       notes: [],

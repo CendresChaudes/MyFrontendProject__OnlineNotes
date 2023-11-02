@@ -22,6 +22,13 @@ describe('Redux selectors: "note" domain', () => {
   const mockCurrentNote = createMockCurrentNote();
 
   const mockStore: State = {
+    user: {
+      currentUser: null,
+      getCurrentUserStatus: APIStatus.Idle,
+      postUserStatus: APIStatus.Idle,
+      signInStatus: APIStatus.Idle,
+      signOutStatus: APIStatus.Idle,
+    },
     note: {
       mode: Mode.Idle,
       notes: mockNotes,
