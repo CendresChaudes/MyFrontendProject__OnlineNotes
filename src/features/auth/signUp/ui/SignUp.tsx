@@ -127,22 +127,22 @@ export function SignUp({ handleIsSignUpChange }: ISignUp) {
         <Button
           htmlType="button"
           type="link"
+          size={buttonSize}
+          disabled={postUserStatus.isPending}
+          onClick={handleIsSignUpChange}
+        >
+          Назад
+        </Button>
+
+        <Button
+          htmlType="button"
+          type="link"
           danger
           size={buttonSize}
           disabled={postUserStatus.isPending}
           onClick={handleFormReset}
         >
           Сбросить
-        </Button>
-
-        <Button
-          htmlType="button"
-          type="default"
-          size={buttonSize}
-          disabled={postUserStatus.isPending}
-          onClick={handleIsSignUpChange}
-        >
-          Назад
         </Button>
       </Flex>
     </Form>

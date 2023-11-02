@@ -2,7 +2,11 @@
   display: flex;
   min-height: 100vh;
 
-  background-color: $color-jade;
+  background-color: $color-default-white;
+
+  @include bp-768 {
+    background-color: $color-jade;
+  }
 }
 
 .content {

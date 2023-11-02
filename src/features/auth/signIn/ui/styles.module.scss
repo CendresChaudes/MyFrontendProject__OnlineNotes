@@ -13,16 +13,32 @@
 }
 
 .form {
-  width: 35vw;
+  width: 100vw;
   margin: auto;
   padding: 30px;
 
   background-color: $color-default-white;
   border-radius: 15px;
+
+  @include bp-768 {
+    width: 60vw;
+  }
+
+  @include bp-1200 {
+    width: 35vw;
+  }
 }
 
 .sign-up-wrapper {
   margin-top: -10px;
   margin-bottom: 15px;
+}
+
+.buttons {
+  margin-top: 15vh;
+
+  @include bp-768 {
+    margin-top: 5vh;
+  }
 }
 
