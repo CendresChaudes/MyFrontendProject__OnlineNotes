@@ -6,17 +6,16 @@ import {
   getNotesStatusObjectSelector,
   notesSelector,
 } from '@/entities/note';
-import { useAppDispatch, useAppSelector } from '@/shared/lib';
+import { useAppSelector } from '@/shared/lib';
 import { Loader } from '@/shared/ui';
 import { useLoadNotes } from '../hooks/useLoadNotes';
 import styles from './styles.module.scss';
 
 export function NotesList() {
-  const dispatch = useAppDispatch();
   const notes = useAppSelector(notesSelector);
   const getNotesStatusObject = useAppSelector(getNotesStatusObjectSelector);
 
-  useLoadNotes(dispatch);
+  useLoadNotes();
 
   if (getNotesStatusObject.isUncompleted) {
     return <Loader />;

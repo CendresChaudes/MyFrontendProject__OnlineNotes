@@ -8,6 +8,7 @@ import {
   postNote,
   postNoteStatusObjectSelector,
 } from '@/entities/note';
+import { currentUserSelector } from '@/entities/user';
 import {
   useBreakpoint,
   isMobile,
@@ -26,6 +27,7 @@ export function AddNoteModal() {
   const inputRef = useRef();
   const dispatch = useAppDispatch();
   const currentBreakpoint = useBreakpoint();
+  const currentUser = useAppSelector(currentUserSelector);
   const postNoteStatus = useAppSelector(postNoteStatusObjectSelector);
   const [form] = Form.useForm();
 
@@ -65,6 +67,7 @@ export function AddNoteModal() {
           title: title.trim(),
           text: text.trim(),
           date: Date.now(),
+          user: currentUser as IUserData['email']
         },
         callback: handleToIdleModeChange,
       })

@@ -3,4 +3,5 @@ interface INoteData {
   title: string;
   text: string;
   date: number;
+  user: IUserData['email'];
 }

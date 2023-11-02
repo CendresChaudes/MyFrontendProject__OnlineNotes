@@ -70,6 +70,7 @@ export function EditNoteModal() {
           title: title.trim(),
           text: text.trim(),
           date: Date.now(),
+          user: currentNote.user
         },
         callback: handleToIdleModeChange,
       })

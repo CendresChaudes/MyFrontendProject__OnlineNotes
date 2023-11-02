@@ -1,27 +1,37 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { collection, getDocs, runTransaction, query, orderBy } from 'firebase/firestore';
+import {
+  collection,
+  getDocs,
+  runTransaction,
+  query,
+  where
+} from 'firebase/firestore';
 import { changeNotification } from '@/shared/lib';
 import { APIRoute } from '@/const';
 
 export const getNotes = createAsyncThunk<
   INoteData[],
-  undefined,
+  IUserData['email'],
   FirebaseThunkAPI
 >(
   'api/getNotes',
-  async (_, { dispatch, extra: api }) => {
+  async (user, { dispatch, extra: api }) => {
     try {
-      const docsRef = collection(api, APIRoute.Notes);
       let data: unknown;
+      const q = query(collection(api, APIRoute.Notes), where('user', '==', user));
 
       await runTransaction(api, async () => {
-        const notesOrderedByDateQuery = query(docsRef, orderBy('date', 'desc'));
-        const response = await getDocs(notesOrderedByDateQuery);
-        data = response.docs.map((item) => item.data() as INoteData);
+        const response = await getDocs(q);
+
+        if (response.docs) {
+          data = response.docs
+            .map((item) => item.data() as INoteData)
+            .sort((a, b) => b.date - a.date);
+        }
       });
 
       return data as INoteData[];
-    } catch {
+    } catch (err) {
       dispatch(
         changeNotification({
           type: 'error',
