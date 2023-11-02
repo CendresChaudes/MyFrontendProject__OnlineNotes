@@ -1,15 +1,19 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { getApiRef } from '@/shared/api';
+import { getApiRef, getAuthRef } from '@/shared/api';
 import { redirect } from '../middlewares/redirect';
 import { rootReducer } from './rootReducer';
 
-const api = getApiRef();
+const db = getApiRef();
+const auth = getAuthRef();
 
 export const appStore = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({
     thunk: {
-      extraArgument: api
+      extraArgument: {
+        db,
+        auth
+      }
     }
   }).concat(redirect)
 });

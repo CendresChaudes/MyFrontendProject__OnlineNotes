@@ -9,12 +9,12 @@ export const updateNote = createAsyncThunk<
   FirebaseThunkAPI
     >(
     'api/updateNote',
-    async ({ data, callback }, { dispatch, extra: api }) => {
+    async ({ data, callback }, { dispatch, extra: { db } }) => {
       try {
-        const docRef = doc(api, APIRoute.Notes, data.id);
+        const docRef = doc(db, APIRoute.Notes, data.id);
 
         // eslint-disable-next-line @typescript-eslint/require-await
-        await runTransaction(api, async (transaction) => {
+        await runTransaction(db, async (transaction) => {
           transaction.set(docRef, data);
         });
 

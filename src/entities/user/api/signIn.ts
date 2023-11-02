@@ -1,15 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { getAuthRef } from '@/shared/api';
 import { changeNotification, redirectToRoute } from '@/shared/lib';
 import { AppRoute } from '@/const';
 
 export const signIn = createAsyncThunk<IUserData['email'], IUserData, FirebaseThunkAPI>(
   'api/signIn',
-  async (userData, { dispatch }) => {
+  async (userData, { dispatch, extra: { auth } }) => {
     try {
       await signInWithEmailAndPassword(
-        getAuthRef(),
+        auth,
         userData.email,
         userData.password
       );

@@ -9,12 +9,12 @@ export const deleteNote = createAsyncThunk<
   FirebaseThunkAPI
     >(
     'api/deleteNote',
-    async ([id, callback], { dispatch, extra: api }) => {
+    async ([id, callback], { dispatch, extra: { db } }) => {
       try {
-        const docRef = doc(api, APIRoute.Notes, id);
+        const docRef = doc(db, APIRoute.Notes, id);
 
         // eslint-disable-next-line @typescript-eslint/require-await
-        await runTransaction(api, async (transaction) => {
+        await runTransaction(db, async (transaction) => {
           transaction.delete(docRef);
         });
 

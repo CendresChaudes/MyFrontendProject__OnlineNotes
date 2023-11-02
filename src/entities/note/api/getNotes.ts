@@ -15,12 +15,12 @@ export const getNotes = createAsyncThunk<
   FirebaseThunkAPI
 >(
   'api/getNotes',
-  async (user, { dispatch, extra: api }) => {
+  async (user, { dispatch, extra: { db } }) => {
     try {
       let data: unknown;
-      const q = query(collection(api, APIRoute.Notes), where('user', '==', user));
+      const q = query(collection(db, APIRoute.Notes), where('user', '==', user));
 
-      await runTransaction(api, async () => {
+      await runTransaction(db, async () => {
         const response = await getDocs(q);
 
         if (response.docs) {
