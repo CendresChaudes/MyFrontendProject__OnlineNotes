@@ -1,18 +1,27 @@
 import { render, RenderOptions } from '@testing-library/react';
+import { createMemoryHistory } from 'history';
 import { ReactElement } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { Provider as ReduxProvider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
 // eslint-disable-next-line @conarti/feature-sliced/layers-slices
 import { appStore } from '@/app/store/appStore';
+import { HistoryRouter } from '../../lib/react/components/HistoryRouter';
 
-const AllTheProviders = ({ children }: { children: React.ReactNode }) => (
-  <HelmetProvider>
-    <ReduxProvider store={appStore}>
-      <BrowserRouter>{children}</BrowserRouter>
-    </ReduxProvider>
-  </HelmetProvider>
-);
+interface IAllTheProviders {
+  children: React.ReactNode;
+}
+
+const AllTheProviders = ({ children }: IAllTheProviders) => {
+  const memoryHistory = createMemoryHistory();
+
+  return (
+    <HelmetProvider>
+      <ReduxProvider store={appStore}>
+        <HistoryRouter history={memoryHistory}>{children}</HistoryRouter>
+      </ReduxProvider>
+    </HelmetProvider>
+  );
+};
 
 const customRender = (
   ui: ReactElement,
@@ -20,5 +29,4 @@ const customRender = (
 ) => render(ui, { wrapper: AllTheProviders, ...options });
 
 export * from '@testing-library/react';
-
 export { customRender as render };
