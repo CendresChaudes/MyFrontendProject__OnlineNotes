@@ -6,7 +6,7 @@
 
 ---
 
-### ⚙️ Технологии
+### ⚙️ Технологии 
 ![Sass Badge](https://img.shields.io/badge/Sass-C69?logo=sass&logoColor=fff&style=for-the-badge)
 ![Ant Design badge](https://img.shields.io/badge/Ant%20Design-0170FE?logo=antdesign&logoColor=fff&style=for-the-badge)
 ![TypeScript badge](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff&style=for-the-badge)
